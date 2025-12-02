@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elvora Talent – Le Futur du Matching</title>
+
+  <!-- Configuration Tailwind pour les couleurs personnalisées -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Couleurs de la marque
+            'elvora-blue': '#234290',
+            'elvora-yellow': '#ffca2f',
+          },
+          animation: {
+            // Animation pour le défilement horizontal des logos
+            'scroll': 'scroll 40s linear infinite',
+            // Animation pour les particules flottantes
+            'float': 'float 10s ease-in-out infinite',
+            // Animation pour les cartes flottantes
+            'float-card': 'float-card 6s ease-in-out infinite',
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* Font Inter pour tout le contenu */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Fond blanc avec halos subtils utilisant les couleurs de la marque */
+    .bg-hero {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(35, 66, 144, 0.10), transparent 55%),
+        /* Elvora Blue */
+        radial-gradient(circle at 85% 80%, rgba(255, 202, 47, 0.15), transparent 55%),
+        /* Elvora Yellow */
+        #ffffff;
+      min-height: 100vh;
+    }
+
+    /* Light glow derrière le titre */
+    .light-rays {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255, 202, 47, 0.2) 0%, transparent 70%);
+      /* Elvora Yellow */
+      filter: blur(60px);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Mot géant en fond */
+    .big-word {
+      font-size: 9rem;
+      font-weight: 900;
+      color: rgba(35, 66, 144, 0.1);
+      /* Elvora Blue très transparent */
+      letter-spacing: -0.03em;
+      line-height: 0.8;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Animation de pulsation du robot */
+    @keyframes pulse-shadow {
+
+      0%,
+      100% {
+        box-shadow: 0 10px 30px rgba(35, 66, 144, 0.3), 0 0 10px rgba(255, 202, 47, 0.6);
+      }
+
+      50% {
+        box-shadow: 0 15px 45px rgba(35, 66, 144, 0.4), 0 0 20px rgba(255, 202, 47, 0.8);
+      }
+    }
+
+    .robot-card {
+      animation: pulse-shadow 4s infinite ease-in-out;
+    }
+
+    /* Pour intégrer les icônes de Lucide Icons */
+    .icon {
+      width: 1.25em;
+      height: 1.25em;
+      stroke-width: 2.5;
+    }
+
+    /* Styles pour l'animation de défilement des logos */
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-250px * 8));
+      }
+    }
+
+    .logo-slider {
+      display: flex;
+      width: calc(250px * 16);
+      /* 8 logos x 2 (doublé pour le défilement continu) */
+      animation: scroll 40s linear infinite;
+    }
+
+    /* Styles pour les particules flottantes */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: rgba(35, 66, 144, 0.4);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 5;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.4;
+      }
+    }
+
+    /* Styles et animation pour les cartes flottantes */
+    .feature-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      z-index: 30;
+      width: 220px;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      animation: float-card 6s ease-in-out infinite;
+    }
+
+    @keyframes float-card {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(1deg);
+      }
+
+      100% {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    /* Positions spécifiques pour les cartes sur desktop */
+    #card-1 {
+      top: 150px;
+      right: 100px;
+      animation-delay: 0s;
+    }
+
+    #card-2 {
+      top: 450px;
+      right: -150px;
+      animation-delay: 2s;
+    }
+
+    #card-3 {
+      bottom: 150px;
+      right: 350px;
+      animation-delay: 4s;
+    }
+  </style>
+
+  <style>
+    :root {
+      --elvora-blue: #0A1948;
+      /* Bleu foncé principal */
+      --elvora-yellow: #FFC700;
+      /* Jaune d'accentuation */
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      background-color: #f7f9fc;
+    }
+
+    .bg-elvora-blue {
+      background-color: var(--elvora-blue);
+    }
+
+    .text-elvora-yellow {
+      color: var(--elvora-yellow);
+    }
+
+    .border-elvora-yellow {
+      border-color: var(--elvora-yellow);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      /* Grande valeur pour permettre l'expansion */
+      padding-top: 1rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .faq-item.active .faq-toggle-icon {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+
+<body class="bg-hero text-gray-900 overflow-x-hidden">
+
+  <!-- PARTIAL: Effet de Particules en Arrière-Plan -->
+  <div class="absolute inset-0 max-w-7xl mx-auto hidden lg:block pointer-events-none">
+    <div class="particle top-[10%] left-[5%]"></div>
+    <div class="particle top-[40%] left-[90%]"></div>
+    <div class="particle top-[75%] left-[20%]"></div>
+    <div class="particle top-[25%] left-[50%]"></div>
+    <div class="particle top-[60%] left-[75%]"></div>
+  </div>
+
+
+  <!-- Halo jaune subtil derrière le titre -->
+  <div class="light-rays"></div>
+
+  <!-- BANNIÈRE D'INFORMATION (TOP BAR) -->
+  <div class="bg-elvora-blue text-white text-sm py-2 hidden md:block z-50 relative">
+    <div class="mx-auto px-6 flex justify-between items-center">
+      <!-- Message promotionnel -->
+      <p class="font-medium">
+        Créez votre profil gratuitement et obtenez votre <span class="text-elvora-yellow font-bold">Elvora Score
+          IA</span>
+        en moins de 5 minutes.
+      </p>
+
+      <!-- Contact/Support -->
+      <div class="flex gap-6">
+        <a href="#" class="flex items-center gap-2 hover:text-elvora-yellow transition">
+          <!-- Icône SVG Horloge (Support client) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          Support client
+        </a>
+        <a href="tel: +229 01 91 13 79 06" class="flex items-center gap-2 hover:text-elvora-yellow transition">
+          <!-- Icône SVG Téléphone -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.73l.7 6.42a2 2 0 0 1-.45 1.74l-2.43 2.43a19.15 19.15 0 0 0 7.42 7.42l2.43-2.43a2 2 0 0 1 1.74-.45l6.42.7a2 2 0 0 1 1.73 2z" />
+          </svg>
+          +229 01 91 13 79 06
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- FIN BANNIÈRE D'INFORMATION -->
+
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50  mx-auto px-6 py-6 flex justify-between items-center z-50 relative">
+    <div class=" text-xl font-extrabold tracking-wider text-elvora-blue">
+      <img src="logo.avif" alt="logo" class="w-24">
+    </div>
+
+    <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-700">
+      <a href="#" class="hover:text-elvora-blue transition">Accueil</a>
+      <a href="#" class="hover:text-elvora-blue transition">Solutions</a>
+      <a href="#" class="hover:text-elvora-blue transition">Entreprise</a>
+      <a href="#" class="hover:text-elvora-blue transition">Tarifs</a>
+      <a href="#" class="hover:text-elvora-blue transition">Contact</a>
+    </nav>
+
+    <a href="#" class="px-5 py-2 border-2 border-gray-300 rounded-xl font-medium hover:bg-gray-100 transition">
+      Connexion
+    </a>
+  </header>
+
+  <!-- PARTIAL: Cartes de Fonctionnalités Flottantes (uniquement visible sur grand écran) -->
+  <section class="feature-cards-container absolute inset-0 max-w-7xl mx-auto hidden lg:block pointer-events-none">
+
+    <!-- Card 1: Precision Matching -->
+    <div id="card-1" class="feature-card pointer-events-auto hover:scale-[1.02] transition duration-300">
+      <div class="flex items-center text-elvora-blue mb-2">
+        <!-- Icône SVG : Target/Cible -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="6" />
+          <circle cx="12" cy="12" r="2" />
+        </svg>
+        <span class="ml-2 font-bold text-sm">Matching 99%</span>
+      </div>
+      <p class="text-xs text-gray-600">
+        Algorithmes prédictifs pour trouver le profil exact que vous cherchez.
+      </p>
+    </div>
+
+    <!-- Card 2: Elvora Score IA -->
+    <div id="card-2" class="feature-card pointer-events-auto hover:scale-[1.02] transition duration-300">
+      <div class="flex items-center text-elvora-yellow mb-2">
+        <!-- Icône SVG : Robot/Brain -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+          <path d="M12 2L8 7h8z" />
+          <path d="M9 16l3-3 3 3" />
+        </svg>
+        <span class="ml-2 font-bold text-sm">Elvora Score</span>
+      </div>
+      <p class="text-xs text-gray-600">
+        Évaluation des compétences douces et du potentiel d'évolution de chaque candidat.
+      </p>
+    </div>
+
+    <!-- Card 3: Confidentialité -->
+    <div id="card-3" class="feature-card pointer-events-auto hover:scale-[1.02] transition duration-300">
+      <div class="flex items-center text-gray-700 mb-2">
+        <!-- Icône SVG : Lock/Cadenas -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        <span class="ml-2 font-bold text-sm">Vos données sécurisées</span>
+      </div>
+      <p class="text-xs text-gray-600">
+        Conformité RGPD et anonymat des profils pour une exploration sans biais.
+      </p>
+    </div>
+  </section>
+
+  <!-- HERO SECTION - Conteneur principal pour le contenu et le robot -->
+  <section class="relative max-w-7xl mx-auto px-6 pt-16 pb-10 flex flex-col lg:flex-row items-center justify-between">
+
+    <!-- Mot géant en fond (positionné pour l'effet visuel) -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hidden lg:block">
+      <div class="big-word opacity-50">ELVORA TALENT</div>
+    </div>
+
+    <!-- Contenu Texte et CTAs (Gauche) -->
+    <div class="lg:w-1/2 z-20 text-center lg:text-left mb-12 lg:mb-0">
+      <p class="text-sm font-semibold tracking-widest text-elvora-blue uppercase mb-3">
+        L'IA au service de votre carrière
+      </p>
+
+      <!-- Titre Principal avec Tagline Rotative -->
+      <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
+        Elvora Talent : <br class="hidden sm:inline" />
+        <!-- Conteneur pour le texte qui tourne -->
+        <span id="rotating-tagline" class="inline-block transition-opacity duration-700 ease-in-out">
+          Le Futur du Matching de Talents.
+        </span>
+      </h1>
+
+      <!-- Sous-Titre IA avec Texte Dynamique (Typing effect) -->
+      <p class="text-xl text-gray-600 mb-10 max-w-lg mx-auto lg:mx-0">
+        Propulsé par l'Intelligence Artificielle pour des connexions de carrière
+        <span id="typing-tagline" class="font-bold text-elvora-blue"></span><span id="cursor"
+          class="ml-1 animate-pulse text-elvora-blue">|</span>.
+      </p>
+
+      <!-- Boutons CTA -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <!-- CTA Primaire -->
+        <a href="#onboarding"
+          class="px-8 py-3 bg-elvora-blue text-white font-bold rounded-xl shadow-lg shadow-elvora-blue/40 hover:bg-elvora-blue/90 transition transform hover:scale-105">
+          Démarrer l'Onboarding Candidat
+        </a>
+        <!-- CTA Secondaire -->
+        <a href="#recruteur"
+          class="px-8 py-3 text-elvora-blue font-bold rounded-xl border-2 border-elvora-yellow hover:bg-elvora-yellow/20 transition transform hover:scale-105">
+          Espace Recruteur
+        </a>
+      </div>
+
+      <!-- PARTIAL: Compteurs de Statistiques Animés -->
+      <div id="stats-container"
+        class="mt-12 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+        <!-- Stat 1 -->
+        <div class="text-center lg:text-left">
+          <p class="text-3xl font-extrabold text-elvora-blue" data-target="5200">0</p>
+          <p class="text-sm text-gray-500 font-medium mt-1">Talents connectés</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="text-center lg:text-left">
+          <p class="text-3xl font-extrabold text-elvora-blue" data-target="98">0%</p>
+          <p class="text-sm text-gray-500 font-medium mt-1">Taux de satisfaction</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="text-center lg:text-left">
+          <p class="text-3xl font-extrabold text-elvora-blue" data-target="24">0h</p>
+          <p class="text-sm text-gray-500 font-medium mt-1">Temps de réponse moyen</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte du Robot (Droite) - Mise à jour de la position et ajout d'un effet -->
+    <div class="lg:w-1/2 z-20 flex justify-center lg:justify-end">
+      <div
+        class="robot-card w-[320px] h-[420px] md:w-[360px] md:h-[480px] rounded-3xl overflow-hidden shadow-xl border border-gray-200 transform transition duration-500 ease-in-out">
+        <!-- NOTE: J'utilise une image placeholder car 'robo.png' n'est pas disponible dans cet environnement -->
+        <img src="robo.gif" alt="Illustration de l'Intelligence Artificielle d'Elvora"
+          class="w-full h-full object-cover" onerror="this.onerror=null; this.src='robo.png';">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PARTIAL: Section de Défilement des Logos (Preuve Sociale) -->
+  <section class="max-w-7xl mx-auto px-6 overflow-hidden relative">
+    <div class="text-center text-sm font-medium text-gray-500 uppercase mb-8">
+      Ils nous font confiance pour recruter leurs futurs talents
+    </div>
+
+    <!-- Wrapper qui masque l'overflow -->
+    <div
+      class="relative w-full overflow-hidden whitespace-nowrap mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)">
+      <div class="logo-slider">
+        <!-- Répétition des 8 logos pour créer un effet de boucle continue -->
+        <!-- Set 1 -->
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-elvora-blue">
+            <path fill="currentColor"
+              d="M12 2L2 12h3v8h14v-8h3L12 2zm0 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+          </svg><span class="ml-2 font-bold text-lg">TechCorp</span>
+        </div>
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-elvora-yellow">
+            <path fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17h2v-2h-2v2zm-2.15-5.26l.48-.48c1.11-1.11 1.77-2.58 1.77-4.14 0-3.31-2.69-6-6-6s-6 2.69-6 6h2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.05-.41 2.05-1.17 2.83l-1.42 1.42c-.68.68-1.08 1.6-1.08 2.58v.5h2v-.5c0-.82.32-1.64.91-2.23l1.42-1.42c.9-.9 1.45-2.08 1.45-3.32 0-3.03-2.47-5.5-5.5-5.5S6.5 7.5 6.5 10.5h2c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5c0 .7-.29 1.39-.8 1.88l-.5.5c-.8.8-1.29 1.88-1.29 3.02v.5h-2v-.5c0-1.14.49-2.22 1.29-3.02l.5-.5c.8-.8 1.29-1.88 1.29-3.02 0-1.38-1.12-2.5-2.5-2.5S8.5 9.12 8.5 10.5h2z" />
+          </svg><span class="ml-2 font-bold text-lg">Finanza</span>
+        </div>
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-gray-700">
+            <path fill="currentColor"
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg><span class="ml-2 font-bold text-lg">AgriPro</span>
+        </div>
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-red-500">
+            <path fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zM11 15h2v2h-2z" />
+          </svg><span class="ml-2 font-bold text-lg">Healthio</span>
+        </div>
+
+        <!-- Set 2 (pour l'effet de défilement infini) -->
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-elvora-blue">
+            <path fill="currentColor"
+              d="M12 2L2 12h3v8h14v-8h3L12 2zm0 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+          </svg><span class="ml-2 font-bold text-lg">TechCorp</span>
+        </div>
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-elvora-yellow">
+            <path fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17h2v-2h-2v2zm-2.15-5.26l.48-.48c1.11-1.11 1.77-2.58 1.77-4.14 0-3.31-2.69-6-6-6s-6 2.69-6 6h2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.05-.41 2.05-1.17 2.83l-1.42 1.42c-.68.68-1.08 1.6-1.08 2.58v.5h2v-.5c0-.82.32-1.64.91-2.23l1.42-1.42c.9-.9 1.45-2.08 1.45-3.32 0-3.03-2.47-5.5-5.5-5.5S6.5 7.5 6.5 10.5h2c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5c0 .7-.29 1.39-.8 1.88l-.5.5c-.8.8-1.29 1.88-1.29 3.02v.5h-2v-.5c0-1.14.49-2.22 1.29-3.02l.5-.5c.8-.8 1.29-1.88 1.29-3.02 0-1.38-1.12-2.5-2.5-2.5S8.5 9.12 8.5 10.5h2z" />
+          </svg><span class="ml-2 font-bold text-lg">Finanza</span>
+        </div>
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-gray-700">
+            <path fill="currentColor"
+              d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg><span class="ml-2 font-bold text-lg">AgriPro</span>
+        </div>
+        <div
+          class="w-[250px] inline-flex items-center justify-center grayscale opacity-50 hover:opacity-100 transition duration-300">
+          <svg viewBox="0 0 24 24" class="w-8 h-8 text-red-500">
+            <path fill="currentColor"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zM11 15h2v2h-2z" />
+          </svg><span class="ml-2 font-bold text-lg">Healthio</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- NOUVELLE SECTION: Fonctionnalités Clés IA -->
+  <section id="features" class="py-20 bg-elvora-offwhite">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+
+      <!-- Titre de la Section -->
+      <p class="text-sm font-semibold tracking-widest text-elvora-blue uppercase mb-3">
+        L'innovation au cœur du processus
+      </p>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+        Des <span class="text-elvora-yellow">Fonctions IA</span> qui Transforment le
+        <br class="hidden sm:inline" /> Recrutement avec <span class="text-elvora-blue">ELVORA</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-12">
+        Recrutement express, talents déjà évalués et prêts à l'emploi.
+      </p>
+
+      <!-- Grille des Fonctionnalités -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Card 1: IA d'analyse de CV -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-elvora-blue/50">
+          <div class="w-12 h-12 bg-elvora-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <!-- Icône SVG : Éclair -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-blue" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Analyse de CV IA</h3>
+          <p class="text-sm text-gray-600">
+            Extraction et normalisation automatiques des compétences pour une base de données homogène.
+          </p>
+        </div>
+
+        <!-- Card 2: Refonte automatique du CV -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-elvora-blue/50">
+          <div class="w-12 h-12 bg-elvora-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <!-- Icône SVG : Document / Fichier -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-blue" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <line x1="10" y1="9" x2="8" y2="9" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Génération de Profil</h3>
+          <p class="text-sm text-gray-600">
+            Convertit le CV en un profil Elvora structuré et optimisé pour le matching.
+          </p>
+        </div>
+
+        <!-- Card 3: Tests techniques automatisés -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-elvora-blue/50">
+          <div class="w-12 h-12 bg-elvora-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <!-- Icône SVG : Fiole / Laboratoire -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-blue" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2c1.8 0 3.6.4 5.2 1.2L18 5 14 3zM10 2c-1.8 0-3.6.4-5.2 1.2L6 5 10 3z" />
+              <path
+                d="M12 22s-2.5-4-2.5-10c0-1.8.4-3.6 1.2-5.2L12 2l1.3 5.3c.8 1.6 1.2 3.4 1.2 5.2 0 6-2.5 10-2.5 10z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Tests Techniques IA</h3>
+          <p class="text-sm text-gray-600">
+            Évaluation automatisée des compétences techniques via des défis de code et des QCM adaptatifs.
+          </p>
+        </div>
+
+        <!-- Card 4: Tests psychotechniques -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-elvora-blue/50">
+          <div class="w-12 h-12 bg-elvora-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <!-- Icône SVG : Utilisateurs / Soft Skills -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-blue" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Soft Skills Évalués</h3>
+          <p class="text-sm text-gray-600">
+            Analyse des compétences douces (leadership, adaptabilité) pour un meilleur "fit" culturel.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CTA de la section -->
+      <div class="mt-12">
+        <a href="#solutions"
+          class="inline-flex items-center gap-2 text-md font-bold text-elvora-blue hover:text-elvora-yellow transition group">
+          Voir plus de solutions IA
+          <!-- Icône SVG : Flèche Droite -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon transition group-hover:translate-x-1" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NOUVELLE SECTION: Comment ça Marche (Étapes Clés) -->
+  <section id="how-it-works" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+
+      <!-- Petite étiquette/CTA -->
+      <span
+        class="inline-block px-4 py-1 mb-2 text-xs font-semibold tracking-wider text-elvora-yellow bg-elvora-yellow/20 rounded-full">
+        Comment ça marche ?
+      </span>
+
+      <!-- Titre de la Section -->
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+        Trouvez votre profil parfait en <br class="hidden sm:inline" /><span class="text-elvora-blue">quelques
+          étapes</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-16 max-w-2xl mx-auto">
+        Créez votre profil, valorisez votre parcours et accédez aux opportunités qui vous correspondent grâce à l'IA.
+      </p>
+
+      <!-- Étapes (Timeline Responsive) -->
+      <div class="relative flex flex-col lg:flex-row justify-between items-start lg:items-center">
+
+        <!-- Ligne Pointillée (Desktop only) -->
+        <div
+          class="absolute hidden lg:block h-0.5 w-[70%] bg-elvora-yellow/50 top-10 left-1/2 transform -translate-x-1/2 z-10">
+        </div>
+
+        <!-- Étape 1 -->
+        <div class="w-full lg:w-1/3 text-center mb-12 lg:mb-0 relative z-20">
+          <div class="relative inline-flex items-center justify-center">
+            <!-- Cercle Jaune avec Numéro -->
+            <div
+              class="w-20 h-20 flex items-center justify-center rounded-full bg-elvora-yellow text-white text-3xl font-extrabold shadow-lg shadow-elvora-yellow/40">
+              1
+            </div>
+            <!-- Ligne verticale pour mobile/tablette -->
+            <div class="absolute h-[100px] w-0.5 bg-elvora-yellow/50 top-[80px] lg:hidden"></div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Inscription & Profilage</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">
+            Créez votre compte rapidement. L'IA analyse votre CV et vos objectifs pour établir votre Elvora Score.
+          </p>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="w-full lg:w-1/3 text-center mb-12 lg:mb-0 relative z-20">
+          <div class="relative inline-flex items-center justify-center">
+            <!-- Cercle Jaune avec Numéro -->
+            <div
+              class="w-20 h-20 flex items-center justify-center rounded-full bg-elvora-yellow text-white text-3xl font-extrabold shadow-lg shadow-elvora-yellow/40">
+              2
+            </div>
+            <!-- Ligne verticale pour mobile/tablette -->
+            <div class="absolute h-[100px] w-0.5 bg-elvora-yellow/50 top-[80px] lg:hidden"></div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Tests Techniques & Soft Skills</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">
+            Prouvez votre expertise avec des tests techniques adaptatifs et une évaluation approfondie des soft skills.
+          </p>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="w-full lg:w-1/3 text-center relative z-20">
+          <div class="relative inline-flex items-center justify-center">
+            <!-- Cercle Jaune avec Numéro -->
+            <div
+              class="w-20 h-20 flex items-center justify-center rounded-full bg-elvora-yellow text-white text-3xl font-extrabold shadow-lg shadow-elvora-yellow/40">
+              3
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Matching & Succès</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">
+            Recevez des mises en relation ciblées avec des entreprises qui cherchent votre profil et postulez en un
+            clic.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CTA de la section -->
+      <div class="mt-16">
+        <a href="#solutions"
+          class="inline-flex items-center gap-2 text-md font-bold text-elvora-blue hover:text-elvora-yellow transition group">
+          En savoir plus sur la méthodologie
+          <!-- Icône SVG : Flèche Droite -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon transition group-hover:translate-x-1" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="tarifs" class="py-24 bg-elvora-offwhite">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <!-- Titre de la Section -->
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+        Des fonctionnalités puissantes pour des
+        <br class="hidden sm:inline" /><span class="text-elvora-yellow">créateurs puissants</span>
+      </h2>
+      <p class="text-lg text-gray-600 mb-16 max-w-2xl mx-auto">
+        Choisissez le plan qui correspond le mieux à vos ambitions et débloquez le plein potentiel de l'IA d'Elvora.
+      </p>
+
+      <!-- Grille des plans tarifaires (3 colonnes) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+
+        <!-- Plan 1: Plan Basic -->
+        <div
+          class="bg-white p-8 rounded-2xl shadow-xl border-2 border-gray-100 h-full flex flex-col justify-between transform hover:scale-[1.02] transition duration-300">
+          <div>
+            <h3 class="text-2xl font-extrabold text-gray-900 mb-1">Plan Basique</h3>
+            <p class="text-sm text-gray-500 mb-8">Pour les premiers pas et l'exploration.</p>
+
+            <!-- Prix -->
+            <div class="flex items-end justify-center mb-8">
+              <span class="text-5xl font-extrabold text-elvora-blue">0</span>
+              <span class="text-xl font-bold text-gray-600 ml-2 mb-1">€ / mois</span>
+            </div>
+
+            <!-- Liste des fonctionnalités -->
+            <ul class="text-left space-y-3 mb-10">
+              <li class="flex items-center text-gray-700">
+                <!-- Icône SVG Coche (Check) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green-500 mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Analyse IA de CV (1/mois)
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green-500 mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Accès à 3 quiz et certifications
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green-500 mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Offres d'emploi de base
+              </li>
+            </ul>
+          </div>
+          <!-- CTA -->
+          <button
+            class="w-full py-3 border-2 border-elvora-blue text-elvora-blue font-bold rounded-xl hover:bg-elvora-blue/10 transition duration-300">
+            Choisir le Plan Basique
+          </button>
+        </div>
+
+        <!-- Plan 2: Plan Premium (Populaire) -->
+        <div
+          class="bg-elvora-blue p-8 rounded-2xl shadow-2xl border-2 border-elvora-yellow relative h-full flex flex-col justify-between transform scale-[1.05] hover:scale-[1.07] transition duration-300">
+          <!-- Étiquette Populaire -->
+          <div
+            class="absolute top-0 right-0 -mt-3 -mr-3 bg-red-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-full shadow-lg rotate-3">
+            Populaire
+          </div>
+          <div>
+            <h3 class="text-2xl font-extrabold text-white mb-1">Plan Premium</h3>
+            <p class="text-sm text-gray-300 mb-8">Pour maximiser votre potentiel de carrière.</p>
+
+            <!-- Prix -->
+            <div class="flex items-end justify-center mb-8">
+              <span class="text-5xl font-extrabold text-elvora-yellow">49</span>
+              <span class="text-xl font-bold text-gray-300 ml-2 mb-1">€ / mois</span>
+            </div>
+
+            <!-- Liste des fonctionnalités -->
+            <ul class="text-left space-y-3 mb-10">
+              <li class="flex items-center text-white">
+                <!-- Icône SVG Coche (Check) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-yellow mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Upload de CV illimité
+              </li>
+              <li class="flex items-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-yellow mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Accès illimité aux quiz & certifications
+              </li>
+              <li class="flex items-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-yellow mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Analyse IA illimitée de vos CV
+              </li>
+              <li class="flex items-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-yellow mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Offres d'emploi personnalisées
+              </li>
+              <li class="flex items-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-elvora-yellow mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Suivi de carrière et conseils IA
+              </li>
+            </ul>
+          </div>
+          <!-- CTA -->
+          <button
+            class="w-full py-3 bg-elvora-yellow text-elvora-blue font-bold rounded-xl shadow-lg shadow-elvora-yellow/30 hover:bg-elvora-yellow/90 transition duration-300">
+            Choisir Premium
+          </button>
+        </div>
+
+        <!-- Plan 3: Plan Recruteur (Business) -->
+        <div
+          class="bg-white p-8 rounded-2xl shadow-xl border-2 border-gray-100 h-full flex flex-col justify-between transform hover:scale-[1.02] transition duration-300">
+          <div>
+            <h3 class="text-2xl font-extrabold text-gray-900 mb-1">Plan Recruteur</h3>
+            <p class="text-sm text-gray-500 mb-8">Pour les entreprises en croissance.</p>
+
+            <!-- Prix -->
+            <div class="flex items-end justify-center mb-8">
+              <span class="text-5xl font-extrabold text-elvora-blue">Sur</span>
+              <span class="text-xl font-bold text-gray-600 ml-2 mb-1">Devis</span>
+            </div>
+
+            <!-- Liste des fonctionnalités -->
+            <ul class="text-left space-y-3 mb-10">
+              <li class="flex items-center text-gray-700">
+                <!-- Icône SVG Coche (Check) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green-500 mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Accès à la base de talents
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green-500 mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Outil de matching IA avancé
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green-500 mr-2 flex-shrink-0"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Support RH dédié 24/7
+              </li>
+            </ul>
+          </div>
+          <!-- CTA -->
+          <button
+            class="w-full py-3 border-2 border-elvora-yellow text-elvora-yellow bg-elvora-blue font-bold rounded-xl hover:bg-elvora-blue/90 hover:text-white transition duration-300">
+            Contactez-nous
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Lien d'information -->
+      <div class="mt-16">
+        <a href="#"
+          class="inline-flex items-center gap-2 text-md font-bold text-elvora-blue hover:text-elvora-yellow transition group">
+          Découvrez plus d'offres
+          <!-- Icône SVG : Flèche Droite -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon transition group-hover:translate-x-1" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section FAQ (Nouvelle Section Intégrée) -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:space-x-12">
+
+        <!-- Bloc de gauche (Titre et Contact) -->
+        <div class="lg:w-1/3 mb-10 lg:mb-0">
+          <p class="text-lg font-bold text-elvora-yellow uppercase mb-2">● FAQ</p>
+          <h2 class="text-5xl font-extrabold text-gray-900 leading-tight">
+            Vos questions sur ELVORA Talent & Career
+          </h2>
+          <p class="mt-4 text-gray-600">
+            Si vous ne trouvez pas la réponse à votre question ici, n'hésitez pas à nous contacter directement.
+          </p>
+          <a href="#"
+            class="mt-8 inline-block bg-elvora-yellow text-gray-900 py-3 px-8 rounded-xl font-semibold hover:bg-yellow-500 transition duration-300 shadow-lg">
+            Contactez-nous
+          </a>
+        </div>
+
+        <!-- Bloc de droite (Questions/Réponses) -->
+        <div class="lg:w-2/3 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+          <div id="faq-list">
+            <!-- Les questions seront générées ici par JavaScript -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    // ----------------------------------------------------------------------
+    // 1. Script d'Animation de Texte (Typing Effect) pour le sous-titre
+    // ----------------------------------------------------------------------
+    const typingTextElement = document.getElementById('typing-tagline');
+    const typingPhrases = [
+      'précises',
+      'rapides',
+      'personnalisées',
+      'avec un potentiel caché'
+    ];
+
+    const TYPING_SPEED = 100; // ms par caractère
+    const DELETING_SPEED = 50; // ms par caractère
+    const PAUSE_TIME = 1500; // ms de pause avant de commencer à effacer
+
+    let typingPhraseIndex = 0;
+    let typingCharIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentPhrase = typingPhrases[typingPhraseIndex];
+
+      if (!isDeleting) {
+        // Logique de frappe
+        if (typingCharIndex < currentPhrase.length) {
+          typingTextElement.textContent += currentPhrase.charAt(typingCharIndex);
+          typingCharIndex++;
+          setTimeout(typeEffect, TYPING_SPEED);
+        } else {
+          // Pause après la frappe
+          isDeleting = true;
+          setTimeout(typeEffect, PAUSE_TIME);
+        }
+      } else {
+        // Logique d'effacement
+        if (typingCharIndex > 0) {
+          typingTextElement.textContent = currentPhrase.substring(0, typingCharIndex - 1);
+          typingCharIndex--;
+          setTimeout(typeEffect, DELETING_SPEED);
+        } else {
+          // Passage à la phrase suivante
+          isDeleting = false;
+          typingPhraseIndex = (typingPhraseIndex + 1) % typingPhrases.length;
+          setTimeout(typeEffect, TYPING_SPEED);
+        }
+      }
+    }
+
+    // ----------------------------------------------------------------------
+    // 2. Script de Rotation de Tagline (Fade Effect) pour le titre principal
+    // ----------------------------------------------------------------------
+    const rotatingTaglineElement = document.getElementById('rotating-tagline');
+    const rotationPhrases = [
+      'Le Futur du Matching de Talents.',
+      'Votre Score IA pour une Carrière Précise.',
+      'La Plateforme de Recrutement Intelligente.'
+    ];
+    let rotationIndex = 0;
+
+    function rotateTagline() {
+      // 1. Commencer le fade out (l'opacité est gérée par la classe Tailwind transition-opacity duration-700)
+      rotatingTaglineElement.style.opacity = '0';
+
+      // 2. Changer le texte après le fondu (700ms)
+      setTimeout(() => {
+        rotationIndex = (rotationIndex + 1) % rotationPhrases.length;
+        rotatingTaglineElement.textContent = rotationPhrases[rotationIndex];
+
+        // 3. Fade in immédiat
+        rotatingTaglineElement.style.opacity = '1';
+      }, 700);
+
+      // 4. Boucler après un temps de lecture (4 secondes) + temps de transition
+      setTimeout(rotateTagline, 4000);
+    }
+
+    // ----------------------------------------------------------------------
+    // 3. Script d'Animation des Compteurs (Stat Counter Animation)
+    // ----------------------------------------------------------------------
+    function animateCounters() {
+      const counters = document.querySelectorAll('#stats-container [data-target]');
+
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const isPercentage = counter.textContent.includes('%');
+        const isHours = counter.textContent.includes('h');
+        const duration = 2000; // 2 secondes
+        let start = 0;
+        const step = target / (duration / 16); // Environ 60fps
+
+        function updateCounter() {
+          start += step;
+          let current = Math.min(Math.floor(start), target);
+
+          if (current >= target) {
+            current = target;
+          }
+
+          let formattedValue = current.toLocaleString('fr-FR');
+          if (isPercentage) {
+            formattedValue += '%';
+          } else if (isHours) {
+            formattedValue += 'h';
+          } else {
+            // Ajouter le '+' seulement si ce n'est ni pourcentage ni heure et si c'est la dernière valeur.
+            if (current === target) {
+              formattedValue += '+';
+            }
+          }
+
+          counter.textContent = formattedValue;
+
+          if (current < target) {
+            requestAnimationFrame(updateCounter);
+          }
+        }
+
+        updateCounter(); // Démarrer l'animation
+      });
+    }
+
+
+    // Démarrer les effets après le chargement du DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      typeEffect();
+      rotateTagline();
+
+      // Démarrer les compteurs une fois que le reste est chargé
+      setTimeout(animateCounters, 500);
+    });
+  </script>
+  <!-- JavaScript pour la FAQ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqData = [
+        {
+          q: "Quel est l'objectif principal d'ELVORA Talent & Career ?",
+          a: "Notre objectif principal est de transformer le recrutement et la recherche d'emploi grâce à l'Intelligence Artificielle. ELVORA permet aux utilisateurs de créer un profil certifié, de valoriser leur diplôme, d'obtenir un <b>Elvora Score<b> (évaluation de profil) et d'accéder à des opportunités de stage ou d'emploi adaptées en quelques clics."
+        },
+        {
+          q: "Comment l'IA est-elle utilisée dans le processus ?",
+          a: "L'IA est au cœur de notre solution et s'occupe de plusieurs fonctions clés : <ul><li><b>Analyse de CV :<b> L'IA analyse votre parcours et vos compétences.</li><li><b>Refonte automatique de CV :<b> Elle optimise votre document pour le rendre plus percutant.</li><li><b>Tests Automatisés :<b> Elle propose des tests techniques et psychotechniques.</li><li><b>Matching & Candidature :<b> L'IA sélectionne et vous envoie des offres correspondant précisément à votre profil.</li></ul>"
+        },
+        {
+          q: "Quel est l'Elvora Score ?",
+          a: "L'Elvora Score est une note attribuée par notre IA après l'analyse de votre CV, de votre bulletin et de vos certifications. Il sert de validation de profil pour les recruteurs et accélère le processus de recrutement express."
+        },
+        {
+          q: "Quelles sont les étapes pour trouver un stage/emploi avec ELVORA ?",
+          a: "Le processus se déroule en trois étapes simples : 1. <b>Inscription Rapide :<b> Créez votre compte en 2 minutes. 2. <b>Évaluation & Profilage :<b> Téléchargement de votre CV/bulletin, analyse par l'IA et obtention de votre Elvora Score. 3. <b>Matching & Candidature :<b> Vous recevez entre 3 et 5 offres adaptées chaque semaine et vous pouvez postuler en 1 clic."
+        },
+        {
+          q: "Quelle est la différence entre le Plan Basic et le Plan Premium ?",
+          a: "Le <b>Plan Basic<b> (2 500 /mois ou version d'essai) inclut l'analyse IA de CV limitée, l'accès à 5 quiz de certification et les offres d'emploi de base. Le <b>Plan Premium<b> (5 000 /mois) offre l'Upload et l'Analyse IA de CV illimités, l'accès illimité à tous les quiz et certifications, des offres d'emploi personnalisées, et le suivi de carrière avec conseils IA."
+        },
+        {
+          q: "Y a-t-il une option gratuite ?",
+          a: "Oui. Le <b>Plan Basic<b> est souvent proposé gratuitement pour les paiements personnels ou comme version d'essai, permettant un accès limité aux fonctions d'analyse IA et à un nombre restreint de certifications."
+        },
+      ];
+
+      const faqList = document.getElementById('faq-list');
+
+      // Fonction pour créer un élément FAQ
+      function createFaqItem(question, answer) {
+        const item = document.createElement('div');
+        item.className = 'faq-item py-4';
+
+        const qDiv = document.createElement('div');
+        qDiv.className = 'faq-question flex justify-between items-center text-lg font-semibold text-gray-800 hover:text-elvora-blue transition';
+        qDiv.innerHTML = `<span>${question}</span><span class="faq-toggle-icon text-2xl transform transition duration-300 text-gray-400">+</span>`;
+
+        const aDiv = document.createElement('div');
+        aDiv.className = 'faq-answer text-gray-600';
+        aDiv.innerHTML = `<p class="leading-relaxed">${answer}</p>`;
+
+        item.appendChild(qDiv);
+        item.appendChild(aDiv);
+
+        qDiv.addEventListener('click', () => {
+          // Fermer tous les autres éléments
+          document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+            if (activeItem !== item) {
+              activeItem.classList.remove('active');
+            }
+          });
+
+          // Basculer l'état de l'élément cliqué
+          item.classList.toggle('active');
+        });
+
+        return item;
+      }
+
+      // Ajouter les éléments à la liste
+      faqData.forEach(data => {
+        faqList.appendChild(createFaqItem(data.q, data.a));
+      });
+    });
+  </script>
+</body>
+
+</html>
