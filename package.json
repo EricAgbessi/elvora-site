@@ -1,0 +1,23 @@
+{
+    "name": "elvora-talent",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "lucide-react": "^0.309.0",
+        "next": "14.0.0",
+        "pnpm": "^10.24.0",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.0.0",
+        "postcss": "^8.0.0",
+        "tailwindcss": "^3.0.0"
+    }
+}

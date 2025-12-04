@@ -1,0 +1,16 @@
+/* Classes Tailwind clés */
+#hero-animation-container {
+    /* s'assurer que le conteneur prend toute la place nécessaire */
+    @apply relative w-full h-screen overflow-hidden;
+}
+
+#hero-animation-container canvas {
+    /* Le canvas généré par Three.js doit être en arrière-plan */
+    @apply absolute inset-0 z-0;
+}
+
+/* Le contenu du héros doit être par-dessus l'animation */
+#hero-animation-container>div {
+    @apply absolute inset-0 z-10;
+    /* z-10 place le contenu par-dessus le canvas (z-0) */
+}
