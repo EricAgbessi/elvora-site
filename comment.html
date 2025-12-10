@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Comment ça marche - Elvora Talent | Le Processus IA de Matching</title>
+
+    <!-- Configuration Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'elvora-blue': '#234290',
+                        'elvora-yellow': '#ffca2f',
+                        'elvora-light': '#f7f9fc',
+                        'step-1': '#4f46e5',
+                        'step-2': '#7c3aed',
+                        'step-3': '#2563eb',
+                        'step-4': '#059669',
+                        'step-5': '#d97706',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-ring': 'pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce-slow 2s infinite',
+                        'progress': 'progress 2s ease-in-out forwards',
+                        'slide-in': 'slide-in 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        'pulse-ring': {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.8' },
+                            '100%': { transform: 'scale(2)', opacity: '0' }
+                        },
+                        'bounce-slow': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        'progress': {
+                            '0%': { width: '0%' },
+                            '100%': { width: 'var(--progress)' }
+                        },
+                        'slide-in': {
+                            '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+
+        /* Processus étape par étape */
+        .process-step {
+            position: relative;
+            counter-increment: step;
+        }
+
+        .process-step::before {
+            content: counter(step);
+            position: absolute;
+            left: -3rem;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--step-color), #234290);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        /* Ligne de connexion entre les étapes */
+        .process-connector {
+            position: absolute;
+            left: -2.75rem;
+            top: 2.5rem;
+            bottom: -2.5rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--step-color), transparent);
+        }
+
+        .process-step:last-child .process-connector {
+            display: none;
+        }
+
+        /* Animation du robot IA */
+        .ai-robot {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(35, 66, 144, 0.3));
+        }
+
+        /* Cartes interactives */
+        .process-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Indicateur de progression */
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #e5e7eb;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background-color: #234290;
+            transform: scale(1.2);
+        }
+
+        .progress-line {
+            height: 2px;
+            background-color: #e5e7eb;
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--progress, 0%);
+            background: linear-gradient(90deg, #234290, #ffca2f);
+            transition: width 0.5s ease;
+        }
+
+        /* Section de démonstration interactive */
+        .demo-container {
+            perspective: 1000px;
+        }
+
+        .demo-card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        /* Animation de transformation IA */
+        @keyframes transform-cv {
+            0% {
+                transform: translateX(-100px) scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateX(0) scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(100px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .cv-transform {
+            animation: transform-cv 3s infinite;
+        }
+
+        /* Timeline horizontale */
+        .timeline-track {
+            position: relative;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #2563eb, #059669, #d97706);
+            border-radius: 2px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid currentColor;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-marker:hover {
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+
+        /* Effet de code qui défile */
+        .code-stream {
+            background: #1e293b;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-stream::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffca2f, transparent);
+            animation: scanning 2s linear infinite;
+        }
+
+        @keyframes scanning {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Comparaison avant/après */
+        .comparison-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .comparison-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .comparison-handle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #234290;
+            cursor: col-resize;
+            transform: translateX(-50%);
+        }
+
+        .comparison-handle::after {
+            content: '↔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #234290;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body class="bg-elvora-light text-gray-900 overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-extrabold tracking-wider text-elvora-blue">
+                <img src="logo.avif" alt="logo" class="w-24">
+            </div>
+
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-700">
+                <a href="index.html" class="hover:text-elvora-blue transition">Accueil</a>
+                <a href="apropos.html" class="hover:text-elvora-blue transition">À propos</a>
+                <a href="comment-ca-marche.html"
+                    class="text-elvora-blue font-bold border-b-2 border-elvora-blue">Comment ça marche</a>
+                <a href="#" class="hover:text-elvora-blue transition">Solutions</a>
+                <a href="#" class="hover:text-elvora-blue transition">Tarifs</a>
+                <a href="#" class="hover:text-elvora-blue transition">Contact</a>
+            </nav>
+
+            <a href="#"
+                class="px-5 py-2 bg-elvora-blue text-white rounded-xl font-medium hover:bg-elvora-blue/90 transition">
+                Connexion
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <p class="text-sm font-semibold tracking-widest text-elvora-blue uppercase mb-3">
+                    Processus Intelligent
+                </p>
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+                    Découvrez comment notre
+                    <span class="text-elvora-blue">IA révolutionne</span> le
+                    <span class="text-elvora-yellow">recrutement</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-10">
+                    En 5 étapes simples, passez d'un CV à une carrière épanouissante grâce à notre intelligence
+                    artificielle avancée.
+                </p>
+
+                <!-- Indicateur de progression -->
+                <div class="flex items-center justify-center mb-12 max-w-2xl mx-auto">
+                    <div class="flex items-center w-full">
+                        <div class="progress-dot active" data-step="1"></div>
+                        <div class="progress-line" style="--progress: 0%"></div>
+                        <div class="progress-dot" data-step="2"></div>
+                        <div class="progress-line" style="--progress: 0%"></div>
+                        <div class="progress-dot" data-step="3"></div>
+                        <div class="progress-line" style="--progress: 0%"></div>
+                        <div class="progress-dot" data-step="4"></div>
+                        <div class="progress-line" style="--progress: 0%"></div>
+                        <div class="progress-dot" data-step="5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Robot IA animé -->
+            <div class="relative h-64 flex justify-center items-center">
+                <div class="ai-robot">
+                    <!-- SVG Robot IA -->
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 12H5V20H19V12H22L12 2Z" fill="#234290" />
+                        <path
+                            d="M9 12C9 13.1046 8.10457 14 7 14C5.89543 14 5 13.1046 5 12C5 10.8954 5.89543 10 7 10C8.10457 10 9 10.8954 9 12Z"
+                            fill="#FFCA2F" />
+                        <path
+                            d="M19 12C19 13.1046 18.1046 14 17 14C15.8954 14 15 13.1046 15 12C15 10.8954 15.8954 10 17 10C18.1046 10 19 10.8954 19 12Z"
+                            fill="#FFCA2F" />
+                        <path d="M12 18V22" stroke="#FFCA2F" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <!-- Points de connexion animés -->
+                <div class="absolute inset-0">
+                    <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-elvora-blue rounded-full animate-ping"></div>
+                    <div class="absolute top-1/3 right-1/3 w-2 h-2 bg-elvora-yellow rounded-full animate-ping"
+                        style="animation-delay: 0.2s"></div>
+                    <div class="absolute bottom-1/4 left-1/3 w-2 h-2 bg-elvora-blue rounded-full animate-ping"
+                        style="animation-delay: 0.4s"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processus étape par étape -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+                    Le Processus en <span class="text-elvora-blue">5 Étapes</span>
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Chaque étape est optimisée par notre IA pour maximiser vos chances de succès
+                </p>
+            </div>
+
+            <div class="relative ml-12">
+                <!-- Étape 1 -->
+                <div class="process-step mb-16" style="--step-color: #4f46e5">
+                    <div class="process-connector"></div>
+                    <div class="process-card bg-white p-8 rounded-2xl shadow-lg border-l-4 border-step-1">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-br from-step-1 to-step-2 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">1. Upload de votre CV</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Téléchargez votre CV (PDF, Word) ou connectez votre profil LinkedIn. Notre IA
+                                    commence immédiatement l'analyse de votre parcours.
+                                </p>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="px-3 py-1 bg-step-1/10 text-step-1 rounded-full">Formats supportés :
+                                        PDF, DOCX</span>
+                                    <span class="px-3 py-1 bg-step-1/10 text-step-1 rounded-full">Analyse en 30
+                                        secondes</span>
+                                </div>
+
+                                <!-- Démonstration interactive -->
+                                <div class="mt-6 p-4 bg-gray-50 rounded-xl">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-700">Simulation d'analyse IA</span>
+                                        <button class="text-sm text-step-1 font-medium" onclick="startAnalysis(1)">
+                                            Lancer la simulation
+                                        </button>
+                                    </div>
+                                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                        <div id="progress-1"
+                                            class="h-full bg-step-1 rounded-full transition-all duration-1000"
+                                            style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="process-step mb-16" style="--step-color: #7c3aed">
+                    <div class="process-connector"></div>
+                    <div class="process-card bg-white p-8 rounded-2xl shadow-lg border-l-4 border-step-2">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-br from-step-2 to-step-3 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">2. Analyse IA Profonde</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Notre IA extrait et catégorise vos compétences, expériences et réalisations. Elle
+                                    identifie vos forces uniques et vos domaines d'expertise.
+                                </p>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="px-3 py-1 bg-step-2/10 text-step-2 rounded-full">+50 points de données
+                                        analysés</span>
+                                    <span class="px-3 py-1 bg-step-2/10 text-step-2 rounded-full">Détection des soft
+                                        skills</span>
+                                </div>
+
+                                <!-- Visualisation de l'analyse -->
+                                <div class="mt-6">
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                        <div class="text-center p-3 bg-step-2/5 rounded-lg">
+                                            <div class="text-lg font-bold text-step-2">Compétences</div>
+                                            <div class="text-2xl font-bold">8-12</div>
+                                        </div>
+                                        <div class="text-center p-3 bg-step-2/5 rounded-lg">
+                                            <div class="text-lg font-bold text-step-2">Expériences</div>
+                                            <div class="text-2xl font-bold">3-5</div>
+                                        </div>
+                                        <div class="text-center p-3 bg-step-2/5 rounded-lg">
+                                            <div class="text-lg font-bold text-step-2">Projets</div>
+                                            <div class="text-2xl font-bold">2-4</div>
+                                        </div>
+                                        <div class="text-center p-3 bg-step-2/5 rounded-lg">
+                                            <div class="text-lg font-bold text-step-2">Soft Skills</div>
+                                            <div class="text-2xl font-bold">5-8</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 3 -->
+                <div class="process-step mb-16" style="--step-color: #2563eb">
+                    <div class="process-connector"></div>
+                    <div class="process-card bg-white p-8 rounded-2xl shadow-lg border-l-4 border-step-3">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-br from-step-3 to-step-4 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">3. Génération de l'Elvora Score</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Vous recevez votre score IA personnalisé qui évalue votre potentiel global, vos
+                                    compétences techniques et votre adéquation culturelle.
+                                </p>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="px-3 py-1 bg-step-3/10 text-step-3 rounded-full">Score sur 1000
+                                        points</span>
+                                    <span class="px-3 py-1 bg-step-3/10 text-step-3 rounded-full">Comparaison
+                                        benchmark</span>
+                                </div>
+
+                                <!-- Widget de score interactif -->
+                                <div class="mt-6">
+                                    <div class="bg-gradient-to-r from-step-3 to-step-4 rounded-xl p-6 text-white">
+                                        <div class="flex justify-between items-center mb-4">
+                                            <span class="text-lg font-medium">Votre Elvora Score estimé</span>
+                                            <button
+                                                class="text-sm bg-white/20 px-3 py-1 rounded-full hover:bg-white/30 transition"
+                                                onclick="calculateScore()">
+                                                Calculer mon score
+                                            </button>
+                                        </div>
+                                        <div class="flex items-end gap-2">
+                                            <div class="text-5xl font-bold" id="score-display">850</div>
+                                            <div class="text-lg opacity-80">/1000</div>
+                                        </div>
+                                        <div class="mt-4 h-3 bg-white/30 rounded-full overflow-hidden">
+                                            <div class="h-full bg-white rounded-full" style="width: 85%"></div>
+                                        </div>
+                                        <div class="mt-2 text-sm opacity-80">
+                                            Votre score vous place dans le top 15% des profils similaires
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 4 -->
+                <div class="process-step mb-16" style="--step-color: #059669">
+                    <div class="process-connector"></div>
+                    <div class="process-card bg-white p-8 rounded-2xl shadow-lg border-l-4 border-step-4">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-br from-step-4 to-step-5 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">4. Matching Intelligent</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Notre algorithme compare votre profil avec des milliers d'opportunités pour trouver
+                                    les matches parfaits selon 12 critères d'adéquation.
+                                </p>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="px-3 py-1 bg-step-4/10 text-step-4 rounded-full">99% de
+                                        précision</span>
+                                    <span class="px-3 py-1 bg-step-4/10 text-step-4 rounded-full">Matching en temps
+                                        réel</span>
+                                </div>
+
+                                <!-- Simulation de matching -->
+                                <div class="mt-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div class="p-4 border-2 border-step-4/30 rounded-xl text-center">
+                                            <div class="text-2xl font-bold text-step-4 mb-1">92%</div>
+                                            <div class="text-sm text-gray-600">Adéquation technique</div>
+                                        </div>
+                                        <div class="p-4 border-2 border-step-4/30 rounded-xl text-center">
+                                            <div class="text-2xl font-bold text-step-4 mb-1">88%</div>
+                                            <div class="text-sm text-gray-600">Adéquation culturelle</div>
+                                        </div>
+                                        <div class="p-4 border-2 border-step-4/30 rounded-xl text-center">
+                                            <div class="text-2xl font-bold text-step-4 mb-1">95%</div>
+                                            <div class="text-sm text-gray-600">Potentiel de croissance</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Étape 5 -->
+                <div class="process-step" style="--step-color: #d97706">
+                    <div class="process-card bg-white p-8 rounded-2xl shadow-lg border-l-4 border-step-5">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-br from-step-5 to-yellow-500 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">5. Proposition & Suivi</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Recevez vos matches triés par pertinence. Postulez en un clic et suivez votre
+                                    candidature en temps réel avec notre tableau de bord intelligent.
+                                </p>
+                                <div class="flex items-center gap-4 text-sm">
+                                    <span class="px-3 py-1 bg-step-5/10 text-step-5 rounded-full">3-5 matches par
+                                        semaine</span>
+                                    <span class="px-3 py-1 bg-step-5/10 text-step-5 rounded-full">Réponse sous
+                                        72h</span>
+                                </div>
+
+                                <!-- Timeline de suivi -->
+                                <div class="mt-6">
+                                    <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
+                                        <span>CV envoyé</span>
+                                        <span>Entretien</span>
+                                        <span>Décision</span>
+                                    </div>
+                                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                        <div class="h-full bg-step-5 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                    <div class="mt-2 text-sm text-step-5 font-medium">
+                                        ⚡ Réponse moyenne : 48 heures
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Comparaison IA vs Traditionnel -->
+    <section class="py-20 bg-gradient-to-br from-elvora-light to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+                    <span class="text-elvora-blue">IA Elvora</span> vs
+                    <span class="text-gray-600">Recrutement Traditionnel</span>
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Découvrez pourquoi notre approche IA est 10x plus efficace
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Carte IA -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl border-t-4 border-elvora-blue">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-elvora-blue rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-elvora-blue">Avec Elvora IA</h3>
+                            <p class="text-gray-500">Processus intelligent et automatisé</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>24/48h</strong> pour recevoir vos premiers matches</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>99% de pertinence</strong> grâce à l'analyse de 50+ critères</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>Candidature en 1 clic</strong> avec profil pré-optimisé</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>Suivi en temps réel</strong> avec notifications intelligentes</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8 p-4 bg-elvora-blue/5 rounded-xl">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-elvora-blue">92%</div>
+                            <div class="text-sm text-gray-600">de satisfaction utilisateur</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Traditionnel -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl border-t-4 border-gray-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gray-300 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-600">Recrutement Traditionnel</h3>
+                            <p class="text-gray-500">Processus manuel et lent</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mt-1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>2-4 semaines</strong> pour un premier retour</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mt=1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>30-40% de pertinence</strong> avec tri manuel</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mt=1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>CV personnalisé</strong> pour chaque candidature</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-red-500 mt=1 mr-3 flex-shrink-0" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span><strong>Pas de suivi</strong> après envoi de candidature</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8 p-4 bg-gray-100 rounded-xl">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gray-600">35%</div>
+                            <div class="text-sm text-gray-500">de réponse aux candidatures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section FAQ Interactive -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+                    Questions <span class="text-elvora-blue">Fréquentes</span>
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Tout ce que vous devez savoir sur le processus Elvora
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="text-lg font-semibold text-gray-900">Combien de temps prend l'analyse de mon CV
+                            ?</span>
+                        <svg class="w-6 h-6 text-elvora-blue transform transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">
+                                Notre IA analyse votre CV en moins de 30 secondes. L'analyse complète (compétences,
+                                expériences, soft skills) prend environ 2-3 minutes. Vous recevez votre Elvora Score
+                                immédiatement après.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="text-lg font-semibold text-gray-900">Comment l'IA évalue-t-elle mes soft skills
+                            ?</span>
+                        <svg class="w-6 h-6 text-elvora-blue transform transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt-0">
+                            <p class="text-gray-600">
+                                Notre IA utilise le NLP (Natural Language Processing) pour analyser la formulation de
+                                vos expériences, vos réalisations et la structure de votre CV. Elle identifie des
+                                patterns correspondant à 12 soft skills clés comme le leadership, la collaboration, la
+                                résolution de problèmes, etc.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden">
+                    <button
+                        class="faq-question w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition">
+                        <span class="text-lg font-semibold text-gray-900">Puis-je améliorer mon Elvora Score ?</span>
+                        <svg class="w-6 h-6 text-elvora-blue transform transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt=0">
+                            <p class="text-gray-600">
+                                Absolument ! Votre score évolue avec vous. En ajoutant de nouvelles expériences, en
+                                passant nos certifications, en complétant des tests techniques, ou en optimisant votre
+                                profil, vous pouvez augmenter votre score de manière significative.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 bg-gradient-to-r from-elvora-blue to-elvora-yellow">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+                Prêt à Essayer ?
+            </h2>
+            <p class="text-xl text-white/90 mb-10">
+                Rejoignez des milliers de talents qui ont accéléré leur carrière grâce à Elvora
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#"
+                    class="px-8 py-4 bg-white text-elvora-blue font-bold rounded-xl hover:bg-gray-100 transition transform hover:scale-105 text-lg">
+                    🚀 Commencer gratuitement
+                </a>
+                <a href="#"
+                    class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition transform hover:scale-105 text-lg">
+                    📞 Demander une démo
+                </a>
+            </div>
+            <p class="mt-6 text-white/80 text-sm">
+                Aucune carte bancaire requise • Essai gratuit de 14 jours
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <img src="logo.avif" alt="logo" class="w-32 mx-auto mb-6">
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Elvora Talent - Le futur du recrutement avec l'IA. © 2025 Tous droits réservés.
+                </p>
+                <div class="mt-8">
+                    <a href="index.html" class="text-gray-400 hover:text-white mx-4">Accueil</a>
+                    <a href="apropos.html" class="text-gray-400 hover:text-white mx-4">À propos</a>
+                    <a href="comment-ca-marche.html" class="text-white font-bold mx-4">Comment ça marche</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-4">Tarifs</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-4">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Interactive
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.closest('.faq-item');
+                const answer = item.querySelector('.faq-answer');
+                const icon = button.querySelector('svg');
+
+                const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+
+                // Fermer toutes les autres FAQ
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    if (ans !== answer) {
+                        ans.style.maxHeight = '0px';
+                        ans.previousElementSibling.querySelector('svg').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                if (isOpen) {
+                    answer.style.maxHeight = '0px';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Animation des progress bars
+        function startAnalysis(step) {
+            const progressBar = document.getElementById(`progress-${step}`);
+            progressBar.style.width = '0%';
+
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+                updateProgressIndicator(step);
+            }, 10);
+        }
+
+        function updateProgressIndicator(step) {
+            const dots = document.querySelectorAll('.progress-dot');
+            const lines = document.querySelectorAll('.progress-line');
+
+            // Activer les points jusqu'à l'étape actuelle
+            dots.forEach((dot, index) => {
+                if (index < step) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // Mettre à jour les lignes de progression
+            lines.forEach((line, index) => {
+                if (index < step - 1) {
+                    line.style.setProperty('--progress', '100%');
+                } else if (index === step - 1) {
+                    line.style.setProperty('--progress', '50%');
+                } else {
+                    line.style.setProperty('--progress', '0%');
+                }
+            });
+        }
+
+        // Simulation de calcul de score
+        function calculateScore() {
+            const scoreDisplay = document.getElementById('score-display');
+            const score = Math.floor(Math.random() * 200) + 750; // Score entre 750 et 950
+
+            // Animation de comptage
+            let current = 0;
+            const increment = score / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= score) {
+                    scoreDisplay.textContent = score;
+                    clearInterval(timer);
+                } else {
+                    scoreDisplay.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slide-in 0.6s ease-out forwards';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les étapes du processus
+        document.addEventListener('DOMContentLoaded', () => {
+            const processSteps = document.querySelectorAll('.process-step');
+            processSteps.forEach(step => {
+                step.style.opacity = '0';
+                observer.observe(step);
+            });
+
+            // Initialiser la progression
+            updateProgressIndicator(1);
+        });
+
+        // Effet de parallaxe sur les cartes
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.process-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateY = (x - centerX) / 50;
+                const rotateX = (centerY - y) / 50;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>

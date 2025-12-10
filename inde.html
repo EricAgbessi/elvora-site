@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section À Propos (Neuro AI) - Couleurs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            /* Couleurs du dégradé (Blue to Red) */
+            --color-blue-gradient: #4a4aff;
+            --color-red-gradient: #ff5757;
+
+            /* Couleurs générales */
+            --color-text-dark: #1f2937;
+            --color-text-muted: #6b7280;
+            --color-background: #ffffff;
+            --color-stroke-text: #e5e7eb;
+            /* Gris très clair pour l'outline */
+        }
+
+        body {
+            background-color: var(--color-background);
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-dark);
+        }
+
+        /* Style de la typographie dégradée "Neuro" (Outline) */
+        .neuro-text {
+            /* Taille et épaisseur */
+            font-size: 15rem;
+            font-weight: 100;
+            line-height: 1;
+            letter-spacing: -0.05em;
+
+            /* Remplissage du texte : Dégradé */
+            background-image: linear-gradient(to right, var(--color-blue-gradient), var(--color-red-gradient));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+
+            /* Contour du texte : Couleur blanche */
+            /* Ceci simule l'effet de tracé fin avec un text-shadow sur le fond très clair */
+            -webkit-text-stroke: 1px var(--color-background);
+            text-shadow:
+                -1px -1px 0 var(--color-stroke-text),
+                1px -1px 0 var(--color-stroke-text),
+                -1px 1px 0 var(--color-stroke-text),
+                1px 1px 0 var(--color-stroke-text);
+
+            /* Position et Z-index */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Style pour le lien "Explore more" (Bordure dégradée) */
+        .explore-link {
+            border: 1px solid;
+            border-image-slice: 1;
+            /* La magie de la bordure dégradée */
+            border-image-source: linear-gradient(to right, var(--color-blue-gradient), var(--color-red-gradient));
+            color: var(--color-text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .explore-link:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <section class="min-h-screen py-20 relative overflow-hidden bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+
+            <div class="absolute top-10 left-1/4 transform -translate-x-1/4 opacity-90">
+                <span class="neuro-text">A propos</span>
+                <span class="text-7xl font-light"
+                    style="color: var(--color-text-dark); position: absolute; right: -120px; top: 120px;">AI</span>
+            </div>
+
+            <div class="flex flex-col lg:flex-row pt-40 lg:pt-60">
+
+                <div class="lg:w-1/2 relative z-10 pr-10">
+                    <p class="text-sm font-semibold uppercase mb-3" style="color: var(--color-text-muted);">/ about /
+                    </p>
+                    <h1 class="text-6xl lg:text-8xl font-extrabold text-gray-900 leading-none mb-12">
+                        Welcome to new era <br>of Neural networks
+                    </h1>
+                </div>
+
+                <div class="lg:w-1/2 relative z-10 pt-10 lg:pt-0">
+                    <p class="text-base text-gray-700 mb-8 max-w-md">
+                        Artificial Intelligence refers to the development of computer systems
+                        that can perform tasks that would typically require human
+                        intelligence. It involves the creation of algorithms and models that
+                        enable machines to learn, reason, perceive, and make decisions.
+                    </p>
+
+                    <p class="text-base text-gray-700 mb-10 max-w-md">
+                        There are generally two types of AI: Narrow or Weak AI, which is
+                        designed to perform specific tasks, and General or Strong AI, which
+                        possesses human-level intelligence and can handle a wide range of
+                        tasks.
+                    </p>
+
+                    <a href="#" class="explore-link inline-flex items-center py-3 px-8 rounded-full font-medium">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                        Explore more
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

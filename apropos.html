@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>À Propos - Elvora Talent | La Révolution IA du Recrutement</title>
+
+    <!-- Configuration Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'elvora-blue': '#234290',
+                        'elvora-yellow': '#ffca2f',
+                        'elvora-light': '#f7f9fc',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+                        'text-gradient': 'text-gradient 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 0.5 },
+                            '50%': { opacity: 0.8 }
+                        },
+                        'text-gradient': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+
+        /* Effet de particules dynamiques */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #234290, #ffca2f);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Carte interactive 3D */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+        }
+
+        /* Timeline moderne */
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border: 4px solid #234290;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(35, 66, 144, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(35, 66, 144, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(35, 66, 144, 0);
+            }
+        }
+
+        /* Gradient animé pour le texte */
+        .animated-gradient {
+            background: linear-gradient(90deg, #234290, #ffca2f, #234290);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: text-gradient 3s linear infinite;
+        }
+
+        /* Stats counters */
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #234290, #ffca2f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        /* Glass morphisme */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+
+        /* Section en forme de vague */
+        .wave-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+            background-size: 50% 100%;
+            background-repeat: repeat-x;
+            z-index: -1;
+        }
+
+        /* Timeline verticale moderne */
+        .timeline-vertical {
+            position: relative;
+        }
+
+        .timeline-vertical::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #234290, #ffca2f);
+        }
+
+        /* Effet parallaxe */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Bouton avec effet hover */
+        .hover-3d {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .hover-3d:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(35, 66, 144, 0.2);
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A;
+            /* Fond sombre pour un look tech/IA */
+            color: #E2E8F0;
+            /* Texte clair */
+        }
+
+        .hero-container {
+            /* Vagues de fond bleues et violettes pour un look IA */
+            background-image: radial-gradient(at 20% 80%, #234290, #ffca2f 0%, transparent 50%),
+                radial-gradient(at 80% 20%, #4F46E5 0%, transparent 50%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Style des boutons */
+        .btn-ia {
+            background-color: #10B981;
+            /* Émeraude vif */
+            color: #0F172A;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-ia:hover {
+            background-color: #059669;
+            /* Émeraude plus foncé */
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            border: 2px solid #4F46E5;
+            /* Indigo */
+            color: #4F46E5;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: #4F46E5;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Style pour l'illustration (la carte IA) */
+        .ia-card {
+            background: rgba(30, 41, 59, 0.8);
+            /* Semi-transparent */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(79, 70, 229, 0.5);
+            /* Bordure Indigo */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-elvora-light text-gray-900 overflow-x-hidden">
+
+    <!-- Header (identique à la page d'accueil) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-extrabold tracking-wider text-elvora-blue">
+                <img src="logo.avif" alt="logo" class="w-24">
+            </div>
+
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-700">
+                <a href="index.html" class="hover:text-elvora-blue transition">Accueil</a>
+                <a href="apropos.html" class="text-elvora-blue font-bold border-b-2 border-elvora-blue">À propos</a>
+                <a href="#" class="hover:text-elvora-blue transition">Comment ça marche</a>
+                <a href="#" class="hover:text-elvora-blue transition">Solutions</a>
+                <a href="#" class="hover:text-elvora-blue transition">Tarifs</a>
+                <a href="#" class="hover:text-elvora-blue transition">Contact</a>
+            </nav>
+
+            <a href="#"
+                class="px-5 py-2 bg-elvora-blue text-white rounded-xl font-medium hover:bg-elvora-blue/90 transition">
+                Connexion
+            </a>
+        </div>
+    </header>
+
+    <!-- Particules animées en arrière-plan -->
+    <div class="particles-container" id="particles"></div>
+
+
+    <section class="hero-container min-h-screen flex items-center py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center z-10">
+
+            <!-- Contenu Texte Principal -->
+            <div class="space-y-8 text-center lg:text-left">
+                <div class="z-10">
+                    <p class="text-sm font-semibold tracking-widest text-elvora-blue uppercase mb-3">
+                        Notre Histoire, Notre Vision
+                    </p>
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+                        <span class="animated-gradient">Réinventer</span> le futur du
+                        <span class="text-elvora-blue">recrutement</span> avec l'IA
+                    </h1>
+                    <p class="text-xl te text-white mb-8">
+                        Elvora Talent n'est pas juste une plateforme de matching. C'est une vision du futur où
+                        chaque talent trouve sa place idéale, où chaque entreprise découvre ses perles rares,
+                        grâce à la puissance de l'intelligence artificielle.
+                    </p>
+                </div>
+
+                <!-- Zone des Boutons -->
+                <div
+                    class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4 justify-center lg:justify-start">
+                    <!-- Bouton Primaire (Évaluation Gratuite) -->
+                    <a href="#"
+                        class="btn-ia flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl shadow-lg focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-opacity-50">
+                        <!-- Icône Lucide: Rocket -->
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.5 4.5 19 10 13.5 15.5M4 20h16M19 4l5 5-5 5-5-5-5 5L4 4h16" />
+                        </svg>
+                        Démarrer l'Évaluation IA
+                    </a>
+
+                    <!-- Bouton Secondaire (Fonctionnalités) -->
+                    <a href="#"
+                        class="btn-outline flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl shadow-md focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+                        <!-- Icône Lucide: Bolt (Éclair) -->
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Voir la Démo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Illustration (Carte d'Analyse IA) -->
+            <div
+                class="hidden lg:block lg:justify-self-end w-full max-w-md mx-auto relative transform hover:translate-y-[-4px] transition-transform duration-500">
+                <div class="ia-card p-6 rounded-3xl space-y-4">
+                    <h3 class="text-xl font-semibold text-indigo-400 border-b border-indigo-600/50 pb-2">
+                        Rapport d'Analyse en Temps Réel
+                    </h3>
+                    <ul class="text-sm text-gray-300 space-y-3">
+                        <li class="flex items-center">
+                            <span class="text-emerald-400 font-bold mr-3">95%</span>
+                            <span class="text-gray-400">Score de Matching de Compétences.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-emerald-400 font-bold mr-3">12 min</span>
+                            <span class="text-gray-400">Durée moyenne de la Simulation Vocale.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-emerald-400 font-bold mr-3">4/5</span>
+                            <span class="text-gray-400">Niveau de Maîtrise (Analyse des Données).</span>
+                        </li>
+                    </ul>
+                    <div class="pt-4">
+                        <div class="h-2 rounded-full bg-indigo-700">
+                            <div class="h-2 rounded-full bg-emerald-500 w-[75%] animate-pulse"></div>
+                        </div>
+                        <p class="mt-2 text-xs text-gray-500">Progression globale de l'optimisation : 75%</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Hero Section À Propos -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="z-10">
+                    <p class="text-sm font-semibold tracking-widest text-elvora-blue uppercase mb-3">
+                        Notre Histoire, Notre Vision
+                    </p>
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+                        <span class="animated-gradient">Réinventer</span> le futur du
+                        <span class="text-elvora-blue">recrutement</span> avec l'IA
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Elvora Talent n'est pas juste une plateforme de matching. C'est une vision du futur où
+                        chaque talent trouve sa place idéale, où chaque entreprise découvre ses perles rares,
+                        grâce à la puissance de l'intelligence artificielle.
+                    </p>
+                </div>
+
+                <!-- Carte 3D interactive -->
+                <div class="relative">
+                    <div class="card-3d glass-card rounded-3xl p-8 shadow-2xl">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-elvora-blue to-elvora-yellow rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-4">Notre Mission</h3>
+                        <p class="text-gray-600 text-center">
+                            Combler le fossé entre talent caché et opportunité réelle grâce à une IA qui comprend
+                            non seulement les compétences, mais aussi le potentiel et l'aspiration.
+                        </p>
+
+                        <!-- Élément visuel animé -->
+                        <div class="mt-8 flex justify-center">
+                            <div class="relative">
+                                <div class="w-12 h-12 bg-elvora-blue rounded-full animate-pulse"></div>
+                                <div
+                                    class="w-12 h-12 bg-elvora-yellow rounded-full absolute top-0 left-6 animate-ping opacity-75">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Histoire - Timeline interactive -->
+    <section class="py-20 wave-section bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+                    Notre <span class="text-elvora-yellow">Histoire</span> en
+                    <span class="text-elvora-blue">Évolution</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    De l'idée à la révolution, découvrez le parcours d'Elvora Talent
+                </p>
+            </div>
+
+            <div class="timeline-vertical max-w-3xl mx-auto relative pl-8">
+                <!-- Étape 1 -->
+                <div class="mb-12 relative">
+                    <div class="timeline-dot absolute -left-11 top-0 bg-white rounded-full"></div>
+                    <div class="glass-card rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-4 py-1 bg-elvora-blue/10 text-elvora-blue rounded-full text-sm font-bold">2022</span>
+                            <span class="ml-4 text-sm text-gray-500">Fondation</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Naissance de l'Idée</h3>
+                        <p class="text-gray-600">
+                            Face aux frustrations du recrutement traditionnel, notre fondateur a imaginé une solution
+                            où l'IA pourrait comprendre à la fois les besoins des entreprises et les aspirations des
+                            talents.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="mb-12 relative">
+                    <div class="timeline-dot absolute -left-11 top-0 bg-white rounded-full"></div>
+                    <div class="glass-card rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-4 py-1 bg-elvora-blue/10 text-elvora-blue rounded-full text-sm font-bold">2023</span>
+                            <span class="ml-4 text-sm text-gray-500">Développement</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Premier Prototype IA</h3>
+                        <p class="text-gray-600">
+                            Développement de l'algoritme de matching prédictif et création du concept d'Elvora Score.
+                            Tests auprès de 50 entreprises pilotes avec des résultats prometteurs.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Étape 3 -->
+                <div class="mb-12 relative">
+                    <div class="timeline-dot absolute -left-11 top-0 bg-white rounded-full"></div>
+                    <div class="glass-card rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-4 py-1 bg-elvora-blue/10 text-elvora-blue rounded-full text-sm font-bold">2024</span>
+                            <span class="ml-4 text-sm text-gray-500">Lancement</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Lancement Officiel</h3>
+                        <p class="text-gray-600">
+                            Lancement de la plateforme complète avec 3 offres (Basic, Premium, Recruteur).
+                            Plus de 1000 talents inscrits en un mois et partenariat avec 30 grandes entreprises.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Étape 4 -->
+                <div class="mb-12 relative">
+                    <div class="timeline-dot absolute -left-11 top-0 bg-white rounded-full"></div>
+                    <div class="glasscard rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="px-4 py-1 bg-elvora-blue/10 text-elvora-blue rounded-full text-sm font-bold">2025</span>
+                            <span class="ml-4 text-sm text-gray-500">Expansion</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Leader du Marché</h3>
+                        <p class="text-gray-600">
+                            Elvora Talent devient la référence en matière de recrutement IA en Afrique francophone.
+                            Introduction de nouvelles fonctionnalités : tests techniques IA, soft skills analytics,
+                            et prédiction de potentiel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Section Valeurs -->
+    <section class="py-20 parallax-section"
+        style="background-image: linear-gradient(rgba(35, 66, 144, 0.9), rgba(35, 66, 144, 0.8)), url('pattern.svg');">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-white">
+                    Nos <span class="text-elvora-yellow">Valeurs</span> Fondamentales
+                </h2>
+                <p class="text-lg text-white/80 max-w-3xl mx-auto">
+                    Les principes qui guident chaque décision chez Elvora Talent
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Valeur 1 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Transparence</h3>
+                    <p class="text-white/80 text-sm">
+                        Nos algorithmes sont explicables. Chaque matching est justifiable et chaque score est
+                        compréhensible.
+                    </p>
+                </div>
+
+                <!-- Valeur 2 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Inclusion</h3>
+                    <p class="text-white/80 text-sm">
+                        Nous luttons contre les biais du recrutement traditionnel pour donner sa chance à chaque talent.
+                    </p>
+                </div>
+
+                <!-- Valeur 3 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Innovation</h3>
+                    <p class="text-white/80 text-sm">
+                        Nous repoussons constamment les limites de l'IA appliquée au recrutement et au développement de
+                        carrière.
+                    </p>
+                </div>
+
+                <!-- Valeur 4 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Confidentialité</h3>
+                    <p class="text-white/80 text-sm">
+                        Vos données sont protégées avec les standards les plus élevés et ne sont jamais vendues à des
+                        tiers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Vision Future -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6">
+                        <span class="text-elvora-blue">Notre Vision</span> pour
+                        <span class="text-elvora-yellow">Demain</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 bg-elvora-blue/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-elvora-blue font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">IA Prédictive de Carrière</h4>
+                                <p class="text-gray-600">
+                                    Développer une IA capable de prédire les évolutions de carrière optimales et les
+                                    compétences de demain.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 bg-elvora-blue/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-elvora-blue font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Plateforme Panafricaine</h4>
+                                <p class="text-gray-600">
+                                    Connecter les talents et opportunités à travers toute l'Afrique, en surmontant les
+                                    barrières géographiques.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="w-10 h-10 bg-elvora-blue/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="text-elvora-blue font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Écosystème Complet</h4>
+                                <p class="text-gray-600">
+                                    Créer un écosystème alliant formation, certification, placement et développement
+                                    continu de carrière.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualisation interactive -->
+                <div class="relative">
+                    <div class="glass-card rounded-3xl p-8 shadow-2xl">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold mb-2">Notre Impact en Temps Réel</h3>
+                            <p class="text-gray-600">Les chiffres qui motivent notre mission</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700">Talents placés</span>
+                                    <span class="font-bold text-elvora-blue">92%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-elvora-blue h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700">Satisfaction entreprises</span>
+                                    <span class="font-bold text-elvora-blue">96%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-elvora-blue h-2 rounded-full" style="width: 96%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-700">Rétention à 1 an</span>
+                                    <span class="font-bold text-elvora-blue">88%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-elvora-blue h-2 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 text-center">
+                            <a href="#"
+                                class="inline-flex items-center px-6 py-3 bg-elvora-blue text-white rounded-xl font-medium hover:bg-elvora-blue/90 transition">
+                                Rejoindre la Révolution
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-20 bg-gradient-to-r from-elvora-blue to-elvora-yellow">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+                Prêt à Réinventer Votre Futur ?
+            </h2>
+            <p class="text-xl text-white/90 mb-10">
+                Que vous soyez un talent à la recherche d'opportunités ou une entreprise en quête de perles rares,
+                rejoignez la révolution Elvora.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#"
+                    class="px-8 py-3 bg-white text-elvora-blue font-bold rounded-xl hover:bg-gray-100 transition transform hover:scale-105">
+                    Je suis un Talent
+                </a>
+                <a href="#"
+                    class="px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition transform hover:scale-105">
+                    Je suis une Entreprise
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <img src="logo.avif" alt="logo" class="w-32 mx-auto mb-6">
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Elvora Talent - Réinventer le recrutement avec l'IA. © 2025 Tous droits réservés.
+                </p>
+                <div class="mt-8">
+                    <a href="index.html" class="text-gray-400 hover:text-white mx-4">Accueil</a>
+                    <a href="apropos.html" class="text-white font-bold mx-4">À propos</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-4">Contact</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-4">Carrières</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-4">Blog</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des particules
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Position aléatoire
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Animation des compteurs
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.dataset.count.includes('%') ? '%' : '+');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.dataset.count.includes('%') ? '%' : '+');
+                }
+            }, 20);
+        }
+
+        // Animation des statistiques au scroll
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.dataset.count);
+                if (!isNaN(target)) {
+                    animateCounter(stat, target);
+                }
+            });
+        }
+
+        // Observateur d'intersection pour animations au scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('stats-section')) {
+                        animateStats();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+
+            // Observer pour la section stats
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+
+            // Animation des cartes au hover
+            const cards = document.querySelectorAll('.hover-3d');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateY = (x - centerX) / 25;
+                    const rotateX = (centerY - y) / 25;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+
+            // Animation de la timeline au scroll
+            const timelineItems = document.querySelectorAll('.timeline-vertical > div');
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+
+</html>

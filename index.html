@@ -254,6 +254,25 @@
     .faq-item.active .faq-toggle-icon {
       transform: rotate(45deg);
     }
+
+    #video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 300px;
+      z-index: -1;
+      /* Place la vidéo derrière tout le contenu */
+      overflow: visible;
+    }
+
+    #video-background video {
+      width: 100%;
+      height: 50%;
+      object-fit: contain;
+
+      /* Assure que la vidéo couvre tout l'écran */
+    }
   </style>
 
 
@@ -330,6 +349,387 @@
     }
   </style>
 
+  <style>
+    .liquid-glass-animated {
+      padding: 40px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dégradé liquide à l'intérieur */
+    .liquid-glass-animated::before {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      background: white;
+      opacity: 0.2;
+      filter: blur(80px);
+      animation: fluid 8s infinite alternate ease-in-out;
+    }
+  </style>
+
+  <style>
+    /* Définition des couleurs personnalisées */
+    :root {
+      --color-primary: #234290;
+      /* Bleu foncé */
+      --color-accent: #ffca2f;
+      /* Jaune / Or */
+    }
+
+    /* Style du bouton principal (Plan Premium) */
+    .premium-button {
+      background-color: var(--color-primary);
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .premium-button:hover {
+      background-color: #1a326c;
+      /* Variante plus foncée pour le survol */
+    }
+
+    /* Style du bouton secondaire (Plan Basique) */
+    .basic-button {
+      border: 1px solid var(--color-primary);
+      color: var(--color-primary);
+      transition: all 0.3s ease;
+    }
+
+    .basic-button:hover {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    /* Dégradé pour la bordure de l'offre Recruteur (utilise les deux couleurs) */
+    .gradient-border-recruteur {
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      background-origin: border-box;
+      border-image: linear-gradient(90deg, var(--color-accent), var(--color-primary)) 1;
+    }
+
+    /* L'arrière-plan du tag Populaire */
+    .popular-tag {
+      background-color: var(--color-accent);
+      color: var(--color-primary);
+    }
+  </style>
+
+  <style>
+    :root {
+      --color-primary: #234290;
+      /* Bleu foncé */
+      --color-accent: #ffca2f;
+      /* Jaune / Or */
+    }
+
+    /* Dégradé appliqué au grand titre "ELVORA" */
+    .gradient-title {
+      font-size: 15rem;
+      /* Très grande taille */
+      font-weight: 700;
+      line-height: 1;
+      /* Le texte est un contour (outline) */
+      color: transparent;
+      -webkit-text-stroke: 3px var(--color-primary);
+      /* Contour en bleu */
+
+      /* Pour un effet de dégradé subtil dans le contour */
+      border-image: linear-gradient(90deg, var(--color-accent), var(--color-primary)) 1;
+      border-image-slice: 1;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    /* Dégradé du bouton d'action */
+    .gradient-button {
+      /* Le dégradé des couleurs du bouton */
+      border: 1px solid transparent;
+      border-image: linear-gradient(90deg, var(--color-accent), var(--color-primary)) 1;
+      background-clip: padding-box;
+      background-origin: border-box;
+      color: var(--color-primary);
+      transition: all 0.3s ease;
+    }
+
+    .gradient-button:hover {
+      color: white;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    }
+  </style>
+
+  <style>
+    :root {
+      --color-primary-dark: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+      /* Fond principal sombre */
+      --color-card-dark: #2c2c3e;
+      /* Fond des cartes plus clair que le principal */
+      --color-text-light: #e0e0e0;
+      /* Texte clair */
+      --color-text-muted: #a0a0a0;
+      /* Texte secondaire/gris */
+      --color-accent-yellow: #ffca2f;
+      /* Jaune/Or (votre couleur) */
+      --color-accent-blue: #234290;
+      /* Bleu foncé (votre couleur) */
+      --color-border-subtle: #4a4a60;
+      /* Bordure fine pour séparateurs */
+    }
+
+    body {
+      background-color: rgba(255, 255, 255, 0.15);
+      font-family: 'Inter', sans-serif;
+      /* Utilisation d'une police moderne */
+      color: var(--color-text-light);
+    }
+
+    .faq-left-panel {
+      background-color: var(--color-primary-dark);
+      border-right: 1px solid var(--color-border-subtle);
+      /* Séparateur vertical */
+    }
+
+    .faq-main-title {
+      color: var(--color-text-light);
+    }
+
+    .faq-sub-text {
+      color: var(--color-text-muted);
+    }
+
+    .support-button {
+      background-color: var(--color-accent-yellow);
+      color: var(--color-primary-dark);
+      /* Texte foncé sur le bouton jaune */
+      transition: all 0.3s ease;
+    }
+
+    .support-button:hover {
+      background-color: #ffd759;
+      /* Lighter yellow on hover */
+    }
+
+    .faq-list-container {
+      background-color: var(--color-primary-dark);
+    }
+
+    .faq-item-card {
+      background-color: #0A1948;
+      border: 1px solid var(--color-border-subtle);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .faq-item-card:hover {
+      border-color: var(--color-accent-blue);
+      /* Bordure bleue au survol */
+      box-shadow: 0 0 15px rgba(35, 66, 144, 0.4);
+      /* Ombre bleue légère */
+    }
+
+    .faq-question-text {
+      color: var(--color-text-light);
+    }
+
+    .faq-answer-content {
+      color: var(--color-text-muted);
+    }
+
+    .faq-meta-info {
+      background-color: #3f3f5a;
+      /* Fond pour les bulles d'info */
+      color: var(--color-accent-yellow);
+    }
+
+    .faq-icon-button {
+      background-color: #3f3f5a;
+      color: var(--color-accent-yellow);
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-icon-button:hover {
+      background-color: var(--color-accent-blue);
+      color: white;
+    }
+  </style>
+  <style>
+    :root {
+      --color-blue: #234290;
+      --color-yellow: #ffca2f;
+      --color-background: #f7f9fc;
+      /* Fond très clair */
+      --color-text-dark: #1f2937;
+      /* Gris foncé pour le texte */
+    }
+
+    body {
+      background-color: var(--color-background);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-container {
+      /* S'assurer que le conteneur est la référence pour les lignes absolues */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-content {
+      /* Le contenu est centré et surélevé */
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-button {
+      background: var(--color-blue);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: white;
+      box-shadow: 0 10px 15px -3px rgba(35, 66, 144, 0.3), 0 4px 6px -2px rgba(35, 66, 144, 0.1);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 20px -5px rgba(35, 66, 144, 0.4), 0 8px 10px -4px rgba(35, 66, 144, 0.2);
+    }
+
+    /* --- STYLES DES LIGNES COURBES (Inspirés de l'image) --- */
+
+    .line-gradient-yellow {
+      background-image: linear-gradient(to right, rgba(255, 202, 47, 0.8), rgba(255, 202, 47, 0.2) 80%, transparent);
+    }
+
+    .line-gradient-blue {
+      background-image: linear-gradient(to right, rgba(35, 66, 144, 0.8), rgba(35, 66, 144, 0.2) 80%, transparent);
+    }
+
+    /* Fonction pour créer les formes courbes */
+    .curve-line {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 50px;
+      /* Épaisseur de la ligne/zone de gradient */
+      opacity: 0.5;
+    }
+
+    /* Ligne en haut à gauche (Blue/Grey) */
+    .curve-top-left {
+      top: 20%;
+      left: 0;
+      width: 50%;
+      height: 100px;
+      background: linear-gradient(90deg, var(--color-blue) 0%, rgba(255, 255, 255, 0) 80%);
+      transform: skewY(-2deg) translateY(-20px);
+      opacity: 0.1;
+      /* Très subtile */
+    }
+
+    /* Ligne de droite (Yellow) */
+    .curve-right {
+      top: 10%;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      border-left: 2px solid rgba(255, 202, 47, 0.3);
+      border-bottom: 2px solid rgba(255, 202, 47, 0.3);
+      border-radius: 0 0 0 100px;
+      /* Courbe en bas à gauche */
+      transform: translateX(50%) translateY(-20px) rotate(10deg);
+      opacity: 0.2;
+    }
+
+    /* Les lignes de l'image sont complexes à reproduire avec du CSS pur simple (elles impliquent des SVG ou des gradients complexes). 
+           Pour la fidélité, nous allons utiliser une approche simplifiée avec des bordures et des décalages.
+        */
+
+    /* Ligne 1: Gauche, vertical, descendant (Blue/Grey) */
+    .line-left-main {
+      position: absolute;
+      top: 0;
+      left: 5%;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--color-blue) 10%, rgba(35, 66, 144, 0.1) 40%, rgba(255, 255, 255, 0) 100%);
+      opacity: 0.2;
+    }
+
+    /* Ligne 2: Milieu, horizontale, courbe (Blue/Grey) */
+    .line-mid-curve {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 40px;
+      transform: translate(-50%, -50%);
+      border: 3px solid transparent;
+      border-radius: 50px;
+      border-color: rgba(35, 66, 144, 0.2);
+      border-top-color: transparent;
+      border-right-color: transparent;
+      opacity: 0.3;
+    }
+
+    /* Ligne 3: Bas, horizontale (Yellow) */
+    .line-bottom-yellow {
+      position: absolute;
+      bottom: 5%;
+      left: 10%;
+      width: 80%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--color-yellow) 0%, rgba(255, 202, 47, 0.2) 20%, rgba(255, 255, 255, 0) 50%);
+      opacity: 0.3;
+    }
+  </style>
+
+  <style>
+    :root {
+      --color-blue: #234290;
+      --color-yellow: #ffca2f;
+      --color-text-dark: #1f2937;
+      --color-text-muted: #6b7280;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      /* Fond blanc */
+    }
+
+    .footer-logo-text {
+      color: var(--color-blue);
+      font-weight: 600;
+    }
+
+    .footer-link {
+      @apply text-sm text-gray-700 hover:text-gray-900 transition duration-150;
+    }
+
+    /* Style pour le grand texte en filigrane */
+    .watermark-text {
+      color: #d1d5db;
+      /* Gris très clair pour l'effet filigrane */
+      font-size: 10rem;
+      /* Taille très grande */
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    /* Ajustement des couleurs pour la grande police */
+    .watermark-elvora {
+      color: #e5e7eb;
+      /* Gris encore plus clair */
+    }
+
+    .watermark-talent {
+      color: #234290;
+      /* Bleu très clair/lavande */
+    }
+  </style>
+
 </head>
 
 <body class="bg-hero text-gray-900 overflow-x-hidden">
@@ -393,13 +793,17 @@
 
     <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-700">
       <a href="#" class="hover:text-elvora-blue transition">Accueil</a>
+      <a href="apropos.html" class="hover:text-elvora-blue transition">A propos</a>
+      <a href="comment.html" class="hover:text-elvora-blue transition">Comment ça marche</a>
+      <a href="#" class="hover:text-elvora-blue transition">FAQ</a>
       <a href="#" class="hover:text-elvora-blue transition">Solutions</a>
       <a href="#" class="hover:text-elvora-blue transition">Entreprise</a>
       <a href="#" class="hover:text-elvora-blue transition">Tarifs</a>
       <a href="#" class="hover:text-elvora-blue transition">Contact</a>
     </nav>
 
-    <a href="#" class="px-5 py-2 border-2 border-gray-300 rounded-xl font-medium hover:bg-gray-100 transition">
+    <a href="#"
+      class="px-5 py-2 border-2 bg-elvora-blue border-gray-300 text-white rounded-xl font-medium hover:bg-gray-100 transition">
       Connexion
     </a>
   </header>
@@ -813,119 +1217,6 @@
     </div>
   </section>
 
-  <style>
-    .liquid-glass-animated {
-      padding: 40px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Dégradé liquide à l'intérieur */
-    .liquid-glass-animated::before {
-      content: "";
-      position: absolute;
-      inset: -50%;
-      background: white;
-      opacity: 0.2;
-      filter: blur(80px);
-      animation: fluid 8s infinite alternate ease-in-out;
-    }
-  </style>
-
-  <style>
-    /* Définition des couleurs personnalisées */
-    :root {
-      --color-primary: #234290;
-      /* Bleu foncé */
-      --color-accent: #ffca2f;
-      /* Jaune / Or */
-    }
-
-    /* Style du bouton principal (Plan Premium) */
-    .premium-button {
-      background-color: var(--color-primary);
-      color: white;
-      transition: background-color 0.3s ease;
-    }
-
-    .premium-button:hover {
-      background-color: #1a326c;
-      /* Variante plus foncée pour le survol */
-    }
-
-    /* Style du bouton secondaire (Plan Basique) */
-    .basic-button {
-      border: 1px solid var(--color-primary);
-      color: var(--color-primary);
-      transition: all 0.3s ease;
-    }
-
-    .basic-button:hover {
-      background-color: var(--color-primary);
-      color: white;
-    }
-
-    /* Dégradé pour la bordure de l'offre Recruteur (utilise les deux couleurs) */
-    .gradient-border-recruteur {
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      background-origin: border-box;
-      border-image: linear-gradient(90deg, var(--color-accent), var(--color-primary)) 1;
-    }
-
-    /* L'arrière-plan du tag Populaire */
-    .popular-tag {
-      background-color: var(--color-accent);
-      color: var(--color-primary);
-    }
-  </style>
-
-  <style>
-    :root {
-      --color-primary: #234290;
-      /* Bleu foncé */
-      --color-accent: #ffca2f;
-      /* Jaune / Or */
-    }
-
-    /* Dégradé appliqué au grand titre "ELVORA" */
-    .gradient-title {
-      font-size: 15rem;
-      /* Très grande taille */
-      font-weight: 700;
-      line-height: 1;
-      /* Le texte est un contour (outline) */
-      color: transparent;
-      -webkit-text-stroke: 3px var(--color-primary);
-      /* Contour en bleu */
-
-      /* Pour un effet de dégradé subtil dans le contour */
-      border-image: linear-gradient(90deg, var(--color-accent), var(--color-primary)) 1;
-      border-image-slice: 1;
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-
-    /* Dégradé du bouton d'action */
-    .gradient-button {
-      /* Le dégradé des couleurs du bouton */
-      border: 1px solid transparent;
-      border-image: linear-gradient(90deg, var(--color-accent), var(--color-primary)) 1;
-      background-clip: padding-box;
-      background-origin: border-box;
-      color: var(--color-primary);
-      transition: all 0.3s ease;
-    }
-
-    .gradient-button:hover {
-      color: white;
-      background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-    }
-  </style>
 
 
   <section class="liquid-glass-animated container mx-auto max-w-7xl bg-white p-20 w-full">
@@ -935,7 +1226,8 @@
 
 
       <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 text-center">
-        Trouvez votre profil parfait en <br class="hidden sm:inline" /><span class="text-elvora-blue">quelques
+        Trouvez votre <span class="text-elvora-yellow">profil parfait</span> en <br class="hidden sm:inline" /><span
+          class="text-elvora-blue">quelques
           étapes</span>
     </div>
 
@@ -987,7 +1279,8 @@
 
     <div class="text-center max-w-3xl mx-auto mb-16">
       <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">
-        <span class="text-elvora-yellow">Des fonctionnalités</span> puissantes pour des créateurs puissants
+        <span class="text-elvora-yellow">Des fonctionnalités</span> puissantes pour des carrières <span
+          class="text-elvora-blue">sans limites</span>.
       </h2>
       <p class="text-lg text-gray-600">
         Choisissez le plan qui correspond le mieux à vos ambitions et débloquez le plein potentiel de l'IA
@@ -1110,50 +1403,199 @@
 
 
 
-  <!-- Section FAQ (Nouvelle Section Intégrée) -->
-  <section id="faq" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:space-x-12">
+  <section id="faq" class="relative py-2  mt-20">
 
-        <!-- Bloc de gauche (Titre et Contact) -->
-        <div class="lg:w-1/3 mb-10 lg:mb-0">
-          <p class="text-lg font-bold text-elvora-yellow uppercase mb-2">● FAQ</p>
-          <h2 class="text-5xl font-extrabold text-gray-900 leading-tight">
-            Vos questions sur ELVORA Talent & Career
+    <div class="text-center max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-2 text-gray-900">
+        <span class="text-elvora-yellow">Vos questions</span> <span class="text-elvora-blue">Talent & Career</span>.
+      </h2>
+      <p class="text-lg text-gray-600">
+        Questions fréquentes pour une transition en toute confiance.
+      </p>
+    </div>
+
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="flex flex-col lg:flex-row rounded-3xl overflow-hidden">
+
+        <div class="lg:w-1/3 p-10 lg:p-12 faq-left-panel">
+          <p class="text-xs font-bold text-elvora-yellow uppercase mb-2 flex items-center">
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 mr-2"></span>
+            SYSTÈME DE CONNAISSANCE IA
+          </p>
+          <h2 class="text-4xl lg:text-5xl font-extrabold text-elvora-blue faq-main-title leading-tight mt-4">
+            Décryptage Elvora
           </h2>
-          <p class="mt-4 text-gray-600">
-            Si vous ne trouvez pas la réponse à votre question ici, n'hésitez pas à nous contacter directement.
+          <p class="mt-6 text-base faq-sub-text text-elvora-blue max-w-xs">
+            Si une requête non-résolue persiste, n'hésitez pas à activer le support directement.
           </p>
           <a href="#"
-            class="mt-8 inline-block bg-elvora-yellow text-gray-900 py-3 px-8 rounded-xl font-semibold hover:bg-yellow-500 transition duration-300 shadow-lg">
-            Contactez-nous
+            class="support-button mt-10 inline-flex items-center justify-center py-3 px-8 rounded-xl font-bold text-sm tracking-wide shadow-lg">
+            Activer le Support
           </a>
         </div>
 
-        <!-- Bloc de droite (Questions/Réponses) -->
-        <div class="lg:w-2/3 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
-          <div id="faq-list">
-            <!-- Les questions seront générées ici par JavaScript -->
+        <div class="lg:w-2/3 p-6 lg:p-10 faq-list-container space-y-5">
+
+
+          <div id="faq-list-accordion" class="space-y-4">
+
+            <div class="faq-item-card rounded-xl overflow-hidden">
+              <div class="flex items-center justify-between p-5 cursor-pointer" data-target="answer-1">
+                <p class="faq-question-text text-lg font-medium flex-grow pr-4">
+                  Comment l'IA d'Elvora analyse-t-elle mon CV ?
+                </p>
+                <div class="flex items-center space-x-3 flex-shrink-0">
+
+                  <button
+                    class="faq-icon-button w-8 h-8 rounded-full flex items-center justify-center text-lg font-light"
+                    id="icon-1">+</button>
+                </div>
+              </div>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out" id="answer-1">
+                <div class="p-5 pt-0">
+                  <p class="faq-sub-text text-sm mb-2">
+                    Notre système d'IA utilise des algorithmes sophistiqués de traitement du langage
+                    naturel (NLP) pour scanner et interpréter les données de votre CV. Il extrait
+                    les compétences clés, l'expérience et les réalisations, puis évalue leur
+                    pertinence par rapport aux postes ciblés.
+                  </p>
+                  <p class="faq-sub-text text-xs italic">
+                    M:2:test Grey gibore tes arm
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item-card rounded-xl overflow-hidden">
+              <div class="flex items-center justify-between p-5 cursor-pointer" data-target="answer-2">
+                <p class="faq-question-text text-lg font-medium flex-grow pr-4">
+                  Quelle est la différence entre les certifications Elvora et Premium ?
+                </p>
+                <div class="flex items-center space-x-3 flex-shrink-0">
+
+                  <button
+                    class="faq-icon-button w-8 h-8 rounded-full flex items-center justify-center text-lg font-light"
+                    id="icon-2">+</button>
+                </div>
+              </div>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out" id="answer-2">
+                <div class="p-5 pt-0">
+                  <p class="faq-sub-text text-sm mb-2">
+                    Les certifications Elvora attestent de vos compétences spécifiques. Le plan
+                    Premium, quant à lui, donne un accès illimité à toutes ces certifications, ainsi
+                    qu'à des fonctionnalités IA avancées pour la maximisation de votre potentiel de
+                    carrière.
+                  </p>
+                  <p class="faq-sub-text text-xs italic">
+                    M:2:test Grey gibore tes arm
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item-card rounded-xl overflow-hidden">
+              <div class="flex items-center justify-between p-5 cursor-pointer" data-target="answer-3">
+                <p class="faq-question-text text-lg font-medium flex-grow pr-4">
+                  Le plan Premium inclut-il un support personnalisé ?
+                </p>
+                <div class="flex items-center space-x-3 flex-shrink-0">
+
+                  <button
+                    class="faq-icon-button w-8 h-8 rounded-full flex items-center justify-center text-lg font-light"
+                    id="icon-3">+</button>
+                </div>
+              </div>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out" id="answer-3">
+                <div class="p-5 pt-0">
+                  <p class="faq-sub-text text-sm mb-2">
+                    Oui, le plan Premium offre un accès à des consultations personnalisées avec nos
+                    experts en carrière, ainsi qu'un support technique prioritaire pour vous
+                    accompagner à chaque étape.
+                  </p>
+                  <p class="faq-sub-text text-xs italic">
+                    M:2:test Grey gibore tes arm
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item-card rounded-xl overflow-hidden">
+              <div class="flex items-center justify-between p-5 cursor-pointer" data-target="answer-4">
+                <p class="faq-question-text text-lg font-medium flex-grow pr-4">
+                  Y a-t-il des offres d'emploi exclusives sur Elvora Talent ?
+                </p>
+                <div class="flex items-center space-x-3 flex-shrink-0">
+
+                  <button
+                    class="faq-icon-button w-8 h-8 rounded-full flex items-center justify-center text-lg font-light"
+                    id="icon-4">+</button>
+                </div>
+              </div>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out" id="answer-4">
+                <div class="p-5 pt-0">
+                  <p class="faq-sub-text text-sm mb-2">
+                    Notre plateforme collabore avec des entreprises partenaires pour proposer des
+                    offres d'emploi ciblées et parfois exclusives, parfaitement adaptées à votre
+                    profil et vos ambitions.
+                  </p>
+                  <p class="faq-sub-text text-xs italic">
+                    M:2:test Grey gibore tes arm
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item-card rounded-xl overflow-hidden">
+              <div class="flex items-center justify-between p-5 cursor-pointer" data-target="answer-5">
+                <p class="faq-question-text text-lg font-medium flex-grow pr-4">
+                  Puis-je obtenir un essai gratuit pour le plan Premium ?
+                </p>
+                <div class="flex items-center space-x-3 flex-shrink-0">
+
+                  <button
+                    class="faq-icon-button w-8 h-8 rounded-full flex items-center justify-center text-lg font-light"
+                    id="icon-5">+</button>
+                </div>
+              </div>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out" id="answer-5">
+                <div class="p-5 pt-0">
+                  <p class="faq-sub-text text-sm mb-2">
+                    Oui, nous offrons une période d'essai de 7 jours pour le plan Premium, vous
+                    permettant de tester l'analyse IA illimitée et l'accès à certaines
+                    certifications avant de vous engager.
+                  </p>
+                  <p class="faq-sub-text text-xs italic">
+                    M:2:test Grey gibore tes arm
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
-
       </div>
     </div>
+
+
   </section>
 
 
-  <section class="container mx-auto max-w-7xl py-24 px-4">
+
+
+
+  <section class="container mx-auto max-w-7xl px-4 mt-20">
+    <div class="text-center max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-2 text-gray-900">
+        <span class="text-elvora-yellow">A propos</span> <span class="text-elvora-blue">de ELVORA</span>.
+      </h2>
+    </div>
     <div class="flex flex-wrap lg:flex-nowrap gap-12">
-
       <div class="w-full lg:w-1/2 relative">
-
         <h1
           class="gradient-title absolute top-[-100px] left-[-20px] opacity-10 select-none pointer-events-none tracking-widest leading-none hidden md:block">
           ELVORA
         </h1>
-
-        <div class="relative pt-12">
-          <p class="text-sm text-gray-500 uppercase tracking-widest mb-4">/ A propos /</p>
+        <div class="relative pt-4">
           <h2 class="text-5xl md:text-7xl font-extrabold leading-tight">
             S'aligner sur le futur
           </h2>
@@ -1197,6 +1639,124 @@
 
     </div>
   </section>
+
+
+  <section class="cta-container w-full h-[400px] flex items-center justify-center mt-20"
+    style="background-image: url(cta.avif);background-position: center;background-size: cover;background-repeat: no-repeat;">
+
+    <div class="cta-content text-center max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6" style="color: var(--color-text-dark);">
+        Prêt à décrocher le stage que vous méritez ?
+      </h2>
+      <p class="text-lg text-gray-600 mb-10">
+        Ne perdez plus de temps. Avec Elvora, trouvez un stage en moins de 30 jours avec réponse garantie.
+      </p>
+      <a href="#" class="cta-button py-4 px-12 rounded-full text-xl font-semibold inline-block">
+        Je crée mon compte
+      </a>
+    </div>
+
+  </section>
+
+  <footer class="bg-[#f6f7fb] pt-16 pb-4">
+    <div class="container mx-auto px-4 max-w-7xl ">
+
+      <div class="md:flex-row border-b border-gray-200 pb-12 "
+        style="display:flex;flex-direction: row;justify-content: center;">
+
+        <div class="mb-8 md:mb-0 md:w-1/4">
+          <a href="#" class="flex items-center space-x-2">
+            <img src="logo.avif" alt="logo" class="w-36">
+          </a>
+
+
+        </div>
+
+        <div class="flex flex-wrap md:w-3/4 justify-between lg:justify-start lg:space-x-20">
+
+          <div class="w-1/2 md:w-auto mb-6 lg:mb-0">
+            <h4 class="text-base font-semibold text-gray-900 mb-3">LIENS</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="footer-link">À propos</a></li>
+              <li><a href="#" class="footer-link">Comment ça marche ?</a></li>
+              <li><a href="#" class="footer-link">Tarifs</a></li>
+            </ul>
+          </div>
+
+          <div class="w-1/2 md:w-auto mb-6 lg:mb-0">
+            <h4 class="text-base font-semibold text-gray-900 mb-3">Support</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="footer-link">Support</a></li>
+              <li><a href="#" class="footer-link">Politique de sécurité</a></li>
+              <li><a href="#" class="footer-link">Terms & conditions</a></li>
+            </ul>
+          </div>
+
+          <div class="w-1/2 md:w-auto">
+            <h4 class="text-base font-semibold text-gray-900 mb-3">Social</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="footer-link">Twitter(x)</a></li>
+              <li><a href="#" class="footer-link">Instagram</a></li>
+              <li><a href="#" class="footer-link">LinkedIn</a></li>
+              <li><a href="#" class="footer-link">Dribbble</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center pt-8 overflow-hidden">
+        <div class="watermark-text">
+          <span class=" big-word opacity-50">ELVORA</span>
+          <span class=" big-word opacity-50">TALENT</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="text-xs text-gray-500 mt-6 w-full text-center">
+      Copyright © 2025. Tous droits réservés
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const questionTriggers = document.querySelectorAll('[data-target]');
+
+      questionTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const targetId = trigger.getAttribute('data-target');
+          const answerElement = document.getElementById(targetId);
+          const iconButton = trigger.querySelector('.faq-icon-button');
+
+          const isOpen = answerElement.style.maxHeight && answerElement.style.maxHeight !== '0px';
+
+          // Fermer toutes les autres réponses ouvertes
+          questionTriggers.forEach(otherTrigger => {
+            const otherTargetId = otherTrigger.getAttribute('data-target');
+            const otherAnswerElement = document.getElementById(otherTargetId);
+            const otherIconButton = otherTrigger.querySelector('.faq-icon-button');
+
+            if (otherAnswerElement !== answerElement && otherAnswerElement.style.maxHeight !== '0px') {
+              otherAnswerElement.style.maxHeight = '0px';
+              otherIconButton.textContent = '+';
+            }
+          });
+
+          // Basculer l'état de la réponse cliquée
+          if (isOpen) {
+            answerElement.style.maxHeight = '0px';
+            iconButton.textContent = '+';
+          } else {
+            // Pour s'assurer que maxHeight est suffisant, on mesure le contenu interne.
+            // offsetHeight inclut le padding de l'élément wrapper.
+            const contentHeight = answerElement.querySelector('div').offsetHeight;
+            answerElement.style.maxHeight = (contentHeight + 20) + 'px'; // +20px de sécurité
+            iconButton.textContent = 'x'; // Change l'icône en 'x'
+          }
+        });
+      });
+    });
+  </script>
 
   <script>
     // ----------------------------------------------------------------------
